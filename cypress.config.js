@@ -10,6 +10,6 @@ module.exports = defineConfig({
     phOwnershipParks: ["Alberta","Ashbourne Heights","Beauport","Birchington Vale","Bowland Fell","Broadland Sands","Burghead","Carlton Meres","Chichester Lakeside","Coghurst Hall","Dawlish Sands","Dovercourt","Felixstowe Beach","Golden Sands","Harts","Hedley Wood","Hengar Manor","Landscove","Lossiemouth","Marlie","Martello Beach","New Beach","Oaklands","Pakefield","Pevensey Bay","Polperro","Riviera Bay","Rye Harbour","Sand le Mere","Sandhills","Seaview","Seawick","Silver Sands","Solent Breezes","St Osyth Beach","Steeple Bay","Suffolk Sands","Tarka","Trevella","Turnberry","Waterside","West Mersea","Winchelsea Sands","Wood Farm"],
 
     supportFile : false,
-    specPattern: "../cypress/e2e/**/*.cy.{js,jsx,ts,tsx}"
+    specPattern: "./cypress/e2e/**/*.cy.{js,jsx,ts,tsx}"
   }
 })

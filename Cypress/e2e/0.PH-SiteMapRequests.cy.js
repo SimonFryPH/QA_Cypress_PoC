@@ -17,7 +17,18 @@
         })
         //urls.forEach(cy.visit);
         for (var i = 0; i < urls.length; i++) {
+            //cy.request('GET',urls[i])
+            // confirm the status code is 201
+            //expect(resp.status).to.eq(200)
+
             cy.request('GET',urls[i])
+            .should((response) => {
+             expect(response.status).to.eq(200)
+             expect(response).to.have.property('headers')
+             expect(response).to.have.property('duration')
+            })
+
+            
         }
         cy.log("*** Finished ***")
     });
