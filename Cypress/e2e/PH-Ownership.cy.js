@@ -30,7 +30,6 @@ describe("Ownership Flow E2E", function () {
     cy.wait(1000)
     expect(cy.get('.text--primary:nth-of-type(1)').first().contains('Caravan Holiday Homes & Lodges for Sale'))
     cy.get('#standard-hero > div:nth-child(3) a:nth-child(3)').click()  //Search Holiday Homes
-
     killChat();
 
     // Page checks on Refine by
@@ -46,42 +45,31 @@ describe("Ownership Flow E2E", function () {
     cy.get('#filter > div.filters__options > div:nth-child(9) > a').click() // Show all options
     cy.get('#filter > div.filters__options > div.overflowable.overflowed').should('exist');
     cy.get('#filter > div.filters__options > div.overflowable.overflowed > a').click() // Hide all options
-
     cy.get('#filter > div.filters__options > div:nth-child(10)').should('be.visible') // Offers
 
-
-    // Check correct ownership parks available
-    var myParks = Cypress.config().phOwnershipParks
-    for (var i = 0; i < myParks.length; i++) {
-      cy.get('[name="location"]').should('include.text', myParks[i])
-    }
-    cy.log("Test to ensure both test data and website are displaying all ownership Parks")
-    cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', myParks.length)
-
     //** Complete availability search form
-    cy.get('[name="location"]').select("All Parks") //-- Defaulted to "All PArks"
+    cy.log("Test to ensure both test data and website are displaying the correct Parks")
+    cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', Cypress.config().phOwnershipParks.length)
+    cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
     cy.wait(500)
     cy.get('[name="priceRange"] option').its('length').should('be.gt', 1)
     cy.get('[name="priceRange"]').select(3) // £30k - £50k
     cy.wait(500)
-    cy.get('.searchbar .button--ownership').click() //Click Search
+    cy.get('.searchbar .button--ownership').click() // Search
     cy.wait(1000)
     killChat();
-
 
     // **Click first county record ***
     cy.get('.card--county .button--ownership').its('length').should('be.gt', 0)
-    cy.get('.card--county .button--ownership').first().click() //eg VIEW ESSEX PARKS
+    cy.get('.card--county .button--ownership').first().click() //eg Essex
     cy.wait(1000)
     killChat();
-
 
     // **Click first holiday destination record in selected county
     cy.get('.card .yellow-button').its('length').should('be.gt', 0)
-    cy.get('.card .yellow-button').first().click() //eg VIEW RESULTS (Steeple Bay)
+    cy.get('.card .yellow-button').first().click() //eg Steeple Bay in Essex
     cy.wait(1000)
     killChat();
-
 
     // **Click MORE DETAILS on first record
     cy.get('.card--ownership .button--ownership').its('length').should('be.gt', 0)
@@ -89,12 +77,11 @@ describe("Ownership Flow E2E", function () {
     cy.wait(1000)
     killChat();
 
-
     //Page checks
-    cy.get('#listing-media').should('be.visible') //Media
-    cy.get('#listing-park .button:nth-of-type(2)').should('be.visible') //Reseve button
-    cy.get('#listing-park .button:nth-of-type(3)').should('be.visible') //Arrange viewing button
-    cy.get('#listing-park > section > div > a').should('be.visible') //Chat with supervisor button
+    cy.get('#listing-media').should('be.visible') // Media
+    cy.get('#listing-park .button:nth-of-type(2)').should('be.visible') // Reseve button
+    cy.get('#listing-park .button:nth-of-type(3)').should('be.visible') // Arrange viewing button
+    cy.get('#listing-park > section > div > a').should('be.visible') // Chat with supervisor button
 
   });
 
