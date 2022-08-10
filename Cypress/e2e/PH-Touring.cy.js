@@ -1,4 +1,4 @@
-const moment = require('moment');
+const dayjs = require('dayjs');
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
@@ -15,14 +15,13 @@ describe('Holiday Touring booking flow E2E', function () {
           cy.visit(Cypress.config().baseUrl)
           cy.url().should('eq', Cypress.config().baseUrl)
           cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
-          cy.setCookie('OptanonAlertBoxClosed', moment().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+          cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
         })
       })
 
 
     it('Should search & book a Touring holiday', function () {
         cy.get('#site-blocks .button--touring').click()
-        cy.wait(1000)
         cy.get('.text--primary').should('include.text', 'Touring Caravan Sites & UK Campsites')
         //
         cy.log(">> Complete availability search form")
@@ -45,17 +44,14 @@ describe('Holiday Touring booking flow E2E', function () {
         cy.log(">> Click first county record")
         cy.get('.card--county .button--touring').its('length').should('be.gt', 0)
         cy.get('.card--county .button--touring').first().click() //eg Devon Parks
-        cy.wait(1000)
         //
         cy.log(">> Click first holiday destination record in selected county")
         cy.get('.card .button--touring').its('length').should('be.gt', 0)
         cy.get('.card .button--touring').first().click() //eg Hedley Wood
-        cy.wait(1000)
         //
         cy.log(">> Click BOOK NOW on first accommodation record")
         cy.get('.card .button--touring').its('length').should('be.gt', 0)
         cy.get('.card .button--touring').first().click() //eg Grass pitch
-        cy.wait(1000)
         //
         cy.log(">> Guest information & Extras")
         cy.get('[name="noAdults"]').select('1') // 1 Adult
@@ -68,7 +64,6 @@ describe('Holiday Touring booking flow E2E', function () {
         cy.get('[name="Extras[TOURDOG].Quantity"]').select('1') // Lets take a dog
         //
         cy.get('.text-right .btn-primary').first().click() // Continue
-        cy.wait(1000)
         //
         cy.log(">> Your details")
         cy.get('[name="title"]').select(cy.config().testUser.title)

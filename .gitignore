@@ -105,3 +105,4 @@ dist
 
 # Old install
 Cypress_old/
+cypress/screenshots/

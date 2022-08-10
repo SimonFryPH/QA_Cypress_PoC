@@ -3,17 +3,15 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
 
   chromeWebSecurity: false,
-  viewportWidth : 1920,
-  viewportHeight : 1080,
-  // cy.viewport(550, 750)
+  //viewportWidth : 1920,
+  //viewportHeight : 1080,
+  defaultCommandTimeout: 20000,
+  //screenSizes: [[1920, 1028],[320, 568], [768, 1024]],
+  screenSizes: [ [1920, 1028]],
 
   e2e: {
     supportFile: false,
     specPattern: "./cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
-
-    //screenSizes: [ [1920, 1028],[320, 568], [768, 1024]],
-    screenSizes: [ [1920, 1028]],
-
     submitBooking: false, // set to true to actually book visits, submit to get to payment page etc
 
     //baseUrl: 'https://ouj-uat-parkholidays.vercel.app/',

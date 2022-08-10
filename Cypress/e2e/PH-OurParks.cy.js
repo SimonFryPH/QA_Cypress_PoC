@@ -1,4 +1,4 @@
-const moment = require('moment');
+const dayjs = require('dayjs');
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
@@ -21,7 +21,7 @@ describe('Our Holiday Parks flow E2E', function () {
       cy.get('#site-blocks .site-block__info--ourparks .button--primary').click() //Our Parks
       cy.get('#ourparks h1').should('include.text', 'Explore a huge range of Holiday Parks')
       cy.get('#filter').should('exist')
-      cy.wait(1000)
+      //cy.wait(1000)
     })
   })
 
@@ -48,7 +48,7 @@ describe('Our Holiday Parks flow E2E', function () {
 
   it('Should display correct holiday home ownership parks', function () {
     cy.get('.filters [title="Holiday Home Ownership Parks"]').click()
-    cy.wait(3000)
+    cy.wait(5000)
     cy.log(">> CONFIG phOwnershipParks.length: " + phOwnershipParks.length) //44
     cy.get("#ourparks .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phOwnershipParks.length)
     for (var i = 0; i < phOwnershipParks.length; i++) {
@@ -61,7 +61,7 @@ describe('Our Holiday Parks flow E2E', function () {
   it('Should find a random ownership park and arrange a visit', function () {
 
     cy.get('.filters [title="Holiday Home Ownership Parks"]').click() // Ownership filter
-    cy.wait(1000)
+    //cy.wait(1000)
     cy.get("#ourparks .col-xs-12:not([style='display: none;']):nth-child(" + i + ") .title p").then($parkName => {
 
       //Save park name
@@ -86,7 +86,7 @@ describe('Our Holiday Parks flow E2E', function () {
       cy.get('[name="lastname"]').first().type(cy.config().testUser.surname)
       cy.get('[name="email"]').first().type(cy.config().testUser.email)
       cy.get('[name="telephone"]').first().type(cy.config().testUser.phoneno)
-      cy.get('[name="visitDate"]').first().type(String(moment().format("YYYY-MM-DD"))) //Visit Date
+      cy.get('[name="visitDate"]').first().type(String(dayjs().format("YYYY-MM-DD"))) //Visit Date
       cy.get('input[type="checkbox"][name="offers"]').eq(0).click({ force: true }) // Privacy Policy
 
       // Submit
@@ -94,7 +94,6 @@ describe('Our Holiday Parks flow E2E', function () {
         cy.log("submitBooking has been enabled in the Config file")
 
         cy.get('div._pmbod8 > form > div._13c9vby > button').first().click() // Submit
-        cy.wait(1000)
         cy.get('div._pmbod8').should('include.text', 'Arrange a visit request received')
         cy.get('div._pmbod8').should('include.text', 'Thank you for your request to arrange a visit, we will be in contact shortly.')
 
