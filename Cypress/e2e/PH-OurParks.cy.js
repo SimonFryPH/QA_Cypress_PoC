@@ -26,48 +26,48 @@ describe('Our Holiday Parks flow E2E', function () {
   })
 
 
+  
   it('Should display correct holiday & short break parks', function () {
-    cy.get('.filters__options .button--holiday-light').first().click()
+    cy.get(".filters__options .button--holiday-light").first().click()
     cy.wait(3000)
     cy.log(">> CONFIG phHolidayParks.length: " + phHolidayParks.length) //41
-    cy.get("#ourparks .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phHolidayParks.length)
+    cy.get("#results-panel .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phHolidayParks.length)
     for (var i = 0; i < phHolidayParks.length; i++) {
       cy.get('#results-panel').should('include.text', phHolidayParks[i])
     }
   })
 
   it('Should display correct touring and camping parks', function () {
-    cy.get('.filters__options .button--touring-light').first().click()
+    cy.get(".filters__options .button--touring-light").first().click()
     cy.wait(3000)
     cy.log(">> CONFIG phTouringParks.length: " + phTouringParks.length) //15
-    cy.get("#ourparks .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phTouringParks.length)
+    cy.get("#results-panel .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phTouringParks.length)
     for (var i = 0; i < phTouringParks.length; i++) {
       cy.get('#results-panel').should('include.text', phTouringParks[i])
     }
   })
 
   it('Should display correct holiday home ownership parks', function () {
-    cy.get('.filters [title="Holiday Home Ownership Parks"]').click()
+    cy.get(".filters__options .button--ownership-light").click()
     cy.wait(5000)
     cy.log(">> CONFIG phOwnershipParks.length: " + phOwnershipParks.length) //44
-    cy.get("#ourparks .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phOwnershipParks.length)
+    cy.get(".col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', phOwnershipParks.length)
     for (var i = 0; i < phOwnershipParks.length; i++) {
       cy.get('#results-panel').should('include.text', phOwnershipParks[i])
     }
   })
 
 
-
   it('Should find a random ownership park and arrange a visit', function () {
 
     cy.get('.filters [title="Holiday Home Ownership Parks"]').click() // Ownership filter
-    //cy.wait(1000)
-    cy.get("#ourparks .col-xs-12:not([style='display: none;']):nth-child(" + i + ") .title p").then($parkName => {
+    cy.wait(3000)
+    cy.get(".col-xs-12:not([style='display: none;']):nth-child(" + i + ") .title p").then($parkName => {
 
       //Save park name
       const parkNameText = $parkName.text()
       cy.log(">> Selected Park name: " + parkNameText)
-      cy.get("#ourparks .col-xs-12:not([style='display: none;']):nth-child(" + i + ") .button--primary").click() // Details button of selected park
+      cy.get(".col-xs-12:not([style='display: none;']):nth-child(" + i + ") .button--primary").click() // Details button of selected park
       //
       cy.log(">> Page checks")
       cy.get('h2').should('include.text', parkNameText) // Park Name
