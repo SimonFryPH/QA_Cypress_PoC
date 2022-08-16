@@ -1,2 +1,2 @@
-# poc_test1
+# Proof of concet for Cypress front end automation
 Simon Fry Testing POC
