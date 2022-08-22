@@ -24,7 +24,7 @@ function killChat() {
   });
 }
 
-describe("Ownership Flow E2E", function () {
+describe("Ownership Flow E2E", async function () {
   this.beforeAll(() => {
     killChat();
   });
@@ -40,7 +40,7 @@ describe("Ownership Flow E2E", function () {
     })
   })
 
-  it('Should Search Holiday homes', function () {
+  it('Should Search Holiday homes', async function () {
 
     cy.get('.site-block__info--ownership .button--ownership').click()
     cy.get('h1').should('include.text', 'Caravan Holiday Homes & Lodges for Sale')
@@ -88,7 +88,7 @@ describe("Ownership Flow E2E", function () {
   });
 
 
-  it('Should take Virtual Tours Of Popular Models', function () {
+  it('Should take Virtual Tours Of Popular Models', async function () {
 
     cy.get('.site-block__info--ownership .button--ownership').click()
     cy.get('[title="virtual-tours"]').click() // VIEW MODEL VIRTUAL TOURS

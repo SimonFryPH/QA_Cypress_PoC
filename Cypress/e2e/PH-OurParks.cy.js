@@ -27,7 +27,7 @@ describe('Our Holiday Parks flow E2E', function () {
 
 
   
-  it('Should display correct holiday & short break parks', function () {
+  it('Should display correct holiday & short break parks', async function () {
     cy.get(".filters__options .button--holiday-light").first().click()
     cy.wait(3000)
     cy.log(">> CONFIG phHolidayParks.length: " + phHolidayParks.length) //41
@@ -37,7 +37,7 @@ describe('Our Holiday Parks flow E2E', function () {
     }
   })
 
-  it('Should display correct touring and camping parks', function () {
+  it('Should display correct touring and camping parks', async function () {
     cy.get(".filters__options .button--touring-light").first().click()
     cy.wait(3000)
     cy.log(">> CONFIG phTouringParks.length: " + phTouringParks.length) //15
@@ -47,7 +47,7 @@ describe('Our Holiday Parks flow E2E', function () {
     }
   })
 
-  it('Should display correct holiday home ownership parks', function () {
+  it('Should display correct holiday home ownership parks', async function () {
     cy.get(".filters__options .button--ownership-light").click()
     cy.wait(5000)
     cy.log(">> CONFIG phOwnershipParks.length: " + phOwnershipParks.length) //44

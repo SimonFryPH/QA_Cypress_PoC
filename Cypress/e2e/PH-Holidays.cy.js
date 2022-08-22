@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 const sizes = Cypress.config().screenSizes
 
-describe('Holiday Booking flow E2E', function () {
+describe('Holiday Booking flow E2E', async function () {
 
     beforeEach(() => {
         sizes.forEach((size) => {
@@ -19,7 +19,7 @@ describe('Holiday Booking flow E2E', function () {
         })
       })
 
-    it('Should search and book a Holiday', function () {
+    it('Should search and book a Holiday', async function () {
         cy.get('.site-block .button--holiday').click()
         cy.get('.text--primary').should('include.text', 'Caravan Holidays & Short Breaks')
         //

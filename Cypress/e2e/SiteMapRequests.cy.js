@@ -15,7 +15,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
       });
     });
   
-    it('Should get each url from the sitemap and return a 200', () => {
+    it('Should get each url from the sitemap and return a 200', async () => {
 
         for (var i = 0; i < urls.length; i++) {
 

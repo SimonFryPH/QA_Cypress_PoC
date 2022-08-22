@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 const sizes = Cypress.config().screenSizes
 
-describe('Holiday Touring booking flow E2E', function () {
+describe('Holiday Touring booking flow E2E', async function () {
 
     beforeEach(() => {
         sizes.forEach((size) => {

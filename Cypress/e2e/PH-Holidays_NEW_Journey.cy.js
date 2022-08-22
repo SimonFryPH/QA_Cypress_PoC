@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 const sizes = Cypress.config().screenSizes
 
-describe('NEW Holiday Booking flow E2E', function () {
+describe('NEW Holiday Booking flow E2E', async function () {
 
     beforeEach(() => {
         sizes.forEach((size) => {
@@ -19,7 +19,7 @@ describe('NEW Holiday Booking flow E2E', function () {
         })
       })
 
-    it('Should search and book a Holiday', function () {
+    it('Should search and book a Holiday', async function () {
         cy.get('.site-block .button--holiday').click()
         cy.get('.text--primary').should('include.text', 'Caravan Holidays & Short Breaks')
         //
@@ -66,8 +66,18 @@ describe('NEW Holiday Booking flow E2E', function () {
         cy.get('div:nth-child(3) h2').should('include.text', 'Park highlights') 
         cy.get('div._4mwgyc > div._mzo65h > div:nth-child(2) div._1t2btyf > svg').its('length').should('be.gt', 0) // Park highlights count
         cy.get('div:nth-child(2) > div > p').should('exist') // About 
+        //
         cy.get('div:nth-child(4) h2').should('include.text', 'Park amenities') 
-        cy.get('div._4mwgyc > div._mzo65h > div:nth-child(4) div._s8qdkv > svg').its('length').should('be.gt', 0) // Park amenities count
+        cy.get('._mzo65h div:nth-child(4) button').first().should('include.text', 'Park amenities') 
+        cy.get('._mzo65h div:nth-child(4) button').invoke('text')
+        .then((text)=>{ 
+            var amenitiesCount = text.match(/[0-9]+/g);
+            cy.log(amenitiesCount + " amenities");
+            cy.get('._mzo65h div:nth-child(4) button').first().click() // Open amenities modal
+            cy.get('[aria-label="Park amenities"] #-row-title').its('length').should('be.eq', parseInt(amenitiesCount)) // Park amenities count
+            cy.get('[aria-label="Park amenities"] [aria-label="Close"]').first().click() // Close amenities modal
+        })
+        //
         cy.get('div:nth-child(3) > div._1yxo37v h2').should('include.text', 'Park location') 
         cy.get('[aria-roledescription="map"]').should('exist')
         cy.get('#availability-results > section > div > h2').should('include.text', 'Accommodation options') 
@@ -86,9 +96,11 @@ describe('NEW Holiday Booking flow E2E', function () {
         cy.get('[name="phoneno"]').type(cy.config().testUser.phoneno)
         cy.get('[name="email"]').first().type(cy.config().testUser.email)
         cy.get('[name="PostcodeLookup"]').type(cy.config().testUser.postcode)
+        cy.wait(2000)
         cy.get('.js-postcode-lookup').first().click() // Find address
         cy.wait(2000)
         cy.get('#drpAddresses').select(cy.config().testUser.fulladdress)
+        cy.wait(2000)
         cy.get('input[type="checkbox"][name="termsandconditionsagreed"]').click({ force: true }) // T&C's
 
         // Submit
