@@ -1,7 +1,7 @@
-import './PH-OurParks.cy.js'
-import './PH-Ownership.cy.js'
-import './PH-Holidays.cy.js'
-import './PH-Touring.cy.js'
+import './E2E-PH-OurParks.cy.js'
+import './E2E-PH-Ownership.cy.js'
+import './E2E-PH-Holidays.cy.js'
+import './E2E-PH-Touring.cy.js'
 
 //import './SiteMapRequests.cy.js'
 

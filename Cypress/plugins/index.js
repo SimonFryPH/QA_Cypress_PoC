@@ -15,8 +15,17 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+
+// cypress/plugins/index.js
+import { lighthouse, pa11y, prepareAudit } from "cypress-audit";
+
+export default (on, config) => {
+  on("before:browser:launch", (browser = {}, launchOptions) => {
+    prepareAudit(launchOptions);
+  });
+
+  on("task", {
+    lighthouse: lighthouse(), // calling the function is important
+    pa11y: pa11y(), // calling the function is important
+  });
 }
