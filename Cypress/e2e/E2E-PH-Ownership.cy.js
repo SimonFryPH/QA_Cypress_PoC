@@ -8,8 +8,11 @@ const sizes = Cypress.config().screenSizes
 
 function cookieClose() {
   cy.log(">> Cookie Close")
-  cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
-  cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+  if (window.location.href.indexOf("www.parkholidays.com") > -1)
+  {
+    cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+    cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+  }
 }
 
 function killChat() {
@@ -40,9 +43,11 @@ describe("Ownership Flow E2E", async function () {
     })
   })
 
-  it('Should Search Holiday homes', async function () {
+  it('Should Search Holiday homes', function () {
 
-    cy.get('.site-block__info--ownership .button--ownership').click()
+    //cy.get('.site-block__info--ownership .button--ownership').click()
+    cy.get('#site-blocks .button--ownership').click()
+
     cy.get('h1').should('include.text', 'Caravan Holiday Homes & Lodges for Sale')
     cy.get('[title="Find holiday home"]').click()  //Search Holiday Homes (takes ages)
     //
@@ -88,7 +93,7 @@ describe("Ownership Flow E2E", async function () {
   });
 
 
-  it('Should take Virtual Tours Of Popular Models', async function () {
+  it('Should take Virtual Tours Of Popular Models', function () {
 
     cy.get('.site-block__info--ownership .button--ownership').click()
     cy.get('[title="virtual-tours"]').click() // VIEW MODEL VIRTUAL TOURS
@@ -101,11 +106,16 @@ describe("Ownership Flow E2E", async function () {
 
     cy.get('.container div:nth-child(1) > div > div > .button').first().click() // Static Caravan Models
     cy.get('.u-video-responsive').first().should('be.visible') //Media
+    cy.get('h1').should('include.text', 'Static Caravan Models')
     cy.go('back')
+    cy.wait(1500)
     cy.get('.container div:nth-child(2) > div > div > .button').first().click() // Villa Collection Models
+    cy.get('h1').should('include.text', 'Villa Collection Models')
     cy.get('.u-video-responsive').first().should('be.visible') //Media
     cy.go('back')
+    cy.wait(1500)
     cy.get('.container div:nth-child(3) > div > div > .button').first().click() // Luxury Lodges
+    cy.get('h1').should('include.text', 'Luxury Lodge Models')
     cy.get('.u-video-responsive').first().should('be.visible') //Media
     cy.go('back')
   });

@@ -12,10 +12,13 @@ describe('NEW Holiday Booking flow E2E', async function () {
         sizes.forEach((size) => {
           cy.viewport(size[0], size[1]) // Change screen size
     
-          cy.visit(Cypress.config().baseUrlDEV)
-          cy.url().should('eq', Cypress.config().baseUrlDEV)
-          //cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
-          cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+          cy.visit(Cypress.config().baseUrl)
+          cy.url().should('eq', Cypress.config().baseUrl)
+          if (window.location.href.indexOf("www.parkholidays.com") > -1)
+          {
+            cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+            cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+          }
         })
       })
 
@@ -26,7 +29,7 @@ describe('NEW Holiday Booking flow E2E', async function () {
         cy.log(">> Complete availability search form")
         cy.log("Test to ensure both test data and website are displaying the correct Parks")
         cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', cy.config().phHolidayParks.length)
-        cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
+        //cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
         cy.wait(500)
         cy.get('[name="monthOfArrival"] option').its('length').should('be.gt', 1)
         cy.get('[name="monthOfArrival"]').select(6) // Assumes availability in 6 months
@@ -67,16 +70,21 @@ describe('NEW Holiday Booking flow E2E', async function () {
         cy.get('div._4mwgyc > div._mzo65h > div:nth-child(2) div._1t2btyf > svg').its('length').should('be.gt', 0) // Park highlights count
         cy.get('div:nth-child(2) > div > p').should('exist') // About 
         //
-        cy.get('div:nth-child(4) h2').should('include.text', 'Park amenities') 
-        cy.get('._mzo65h div:nth-child(4) button').first().should('include.text', 'Park amenities') 
-        cy.get('._mzo65h div:nth-child(4) button').invoke('text')
-        .then((text)=>{ 
-            var amenitiesCount = text.match(/[0-9]+/g);
-            cy.log(amenitiesCount + " amenities");
-            cy.get('._mzo65h div:nth-child(4) button').first().click() // Open amenities modal
-            cy.get('[aria-label="Park amenities"] #-row-title').its('length').should('be.eq', parseInt(amenitiesCount)) // Park amenities count
-            cy.get('[aria-label="Park amenities"] [aria-label="Close"]').first().click() // Close amenities modal
-        })
+        cy.get('[role="tablist"] button:nth-child(1)').should('include.text', 'Park Amenities') 
+        cy.get('[role="tablist"] button:nth-child(2)').should('include.text', "What's On") 
+        cy.get('[role="tablist"] button:nth-child(3)').should('include.text', 'Local Area') 
+
+        //
+        cy.get('[role="tablist"] button:nth-child(1)').click()
+        // enable this of black amenities button exists
+        //cy.get('[role="tablist"] button:nth-child(1)').invoke('text')
+        //.then((text)=>{ 
+        //    var amenitiesCount = text.match(/[0-9]+/g);
+        //    cy.log(amenitiesCount + " amenities");
+            //cy.get('._mzo65h div:nth-child(4) button').first().click() // Open amenities modal
+            //cy.get('[aria-label="Park amenities"] #-row-title').its('length').should('be.eq', parseInt(amenitiesCount)) // Park amenities count
+            //cy.get('[aria-label="Park amenities"] [aria-label="Close"]').first().click() // Close amenities modal
+        //})
         //
         cy.get('div:nth-child(3) > div._1yxo37v h2').should('include.text', 'Park location') 
         cy.get('[aria-roledescription="map"]').should('exist')

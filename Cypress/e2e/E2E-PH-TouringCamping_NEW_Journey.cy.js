@@ -14,16 +14,18 @@ describe('Holiday Touring booking flow E2E', async function () {
     
           cy.visit(Cypress.config().baseUrl)
           cy.url().should('eq', Cypress.config().baseUrl)
+
           if (window.location.href.indexOf("www.parkholidays.com") > -1)
           {
             cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
             cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
           }
+          
         })
       })
 
+      it('Should search & book a Touring & Camping holiday', async function () {
 
-    it('Should search & book a Touring holiday', function () {
         cy.get('#site-blocks .button--touring').click()
         cy.get('.text--primary').should('include.text', 'Touring Caravan Sites & UK Campsites')
         //
@@ -36,25 +38,62 @@ describe('Holiday Touring booking flow E2E', async function () {
         cy.get('[name="monthOfArrival"]').select(6) // Hopefully some availability in 6 months
         cy.wait(3000)
         cy.get('[name="nights"] option').its('length').should('be.gt', 1)
-        cy.get('[name="nights"]').select(1) // 3 nights
+        cy.get('[name="nights"]').select('3 nights') // 3 nights
         cy.wait(1000)
         cy.get('[name="dateOfArrival"] option').its('length').should('be.gt', 1)
         cy.get('[name="dateOfArrival"]').select(1) // First date in list
         cy.wait(1000)
         cy.get('[name="availability"] .button--touring').click() // Search
         cy.wait(1000)
+
+        // New top search bar checks
+        cy.get('[role="search"]').should('exist')
+        cy.get('[role="search"]').should('be.visible')
+        cy.get('[role="search"] button:nth-child(2) > div').should('include.text', 'Touring and camping') // default
+        cy.get('[role="search"] button:nth-child(2) ._krjbj').should('include.text', 'Product')
+        cy.get('[role="search"] button:nth-child(4) ._krjbj').should('include.text', 'Location')
+        cy.get('[role="search"] button:nth-child(4) > div').should('include.text', 'All locations')
+        cy.get('[role="search"] button:nth-child(6) ._krjbj').should('include.text', 'Arrival date') 
+        cy.get('[role="search"] button:nth-child(8) ._krjbj').should('include.text', 'Guests') 
+        cy.get('[role="search"] button:nth-child(8) > div').should('include.text', '1 guest') // default
+
+        cy.get('[aria-label="Map with interactive pins related to your search"]').should('exist')
+        cy.get('[aria-label="Map with interactive pins related to your search"]').should('be.visible')
+        //cy.get('[aria-label="Map"] > div:nth-of-type(1)').contains('translate(0px, 0px)') // Display UK - not working
+        //cy.contains('[aria-label="Map"] > div:nth-of-type(1)', 'translate(0px, 0px)') // Display UK - not working
+
+        cy.log(">> Click first location record")
+        cy.get('[itemprop="itemListElement"]').its('length').should('be.gt', 0)
+        cy.get('[itemprop="itemListElement"]').first().click() //eg Wood Farm
         //
-        cy.log(">> Click first county record")
-        cy.get('.card--county .button--touring').its('length').should('be.gt', 0)
-        cy.get('.card--county .button--touring').first().click() //eg Devon Parks
+        // Page checks
+        cy.get('[aria-label="Listing image 1, Show all photos"]').should('exist')
+        cy.get('h1').should('exist') // Park name
+        cy.get('div:nth-child(3) h2').should('include.text', 'Park highlights') 
+        cy.get('div._4mwgyc > div._mzo65h > div:nth-child(2) div._1t2btyf > svg').its('length').should('be.gt', 0) // Park highlights count
+        cy.get('div:nth-child(2) > div > p').should('exist') // About 
         //
-        cy.log(">> Click first holiday destination record in selected county")
-        cy.get('.card .button--touring').its('length').should('be.gt', 0)
-        cy.get('.card .button--touring').first().click() //eg Hedley Wood
+        cy.get('[role="tablist"] button:nth-child(1)').should('include.text', 'Park Amenities') 
+        //cy.get('[role="tablist"] button:nth-child(2)').should('include.text', "What's On") 
+        //cy.get('[role="tablist"] button:nth-child(3)').should('include.text', 'Local Area') 
+
         //
-        cy.log(">> Click BOOK NOW on first accommodation record")
-        cy.get('.card .button--touring').its('length').should('be.gt', 0)
-        cy.get('.card .button--touring').first().click() //eg Grass pitch
+        cy.get('[role="tablist"] button:nth-child(1)').click()
+        // enable this of black amenities button exists
+        //cy.get('[role="tablist"] button:nth-child(1)').invoke('text')
+        //.then((text)=>{ 
+        //    var amenitiesCount = text.match(/[0-9]+/g);
+        //    cy.log(amenitiesCount + " amenities");
+            //cy.get('._mzo65h div:nth-child(4) button').first().click() // Open amenities modal
+            //cy.get('[aria-label="Park amenities"] #-row-title').its('length').should('be.eq', parseInt(amenitiesCount)) // Park amenities count
+            //cy.get('[aria-label="Park amenities"] [aria-label="Close"]').first().click() // Close amenities modal
+        //})
+        //
+        cy.get('div:nth-child(3) > div._1yxo37v h2').should('include.text', 'Park location') 
+        cy.get('[aria-roledescription="map"]').should('exist')
+        cy.get('#availability-results > section > div > h2').should('include.text', 'Pitch options') 
+        cy.get('#availability-results ._1espdem').its('length').should('be.gt', 0) 
+        cy.get('#availability-results ._1espdem [type="submit"]').first().click() //eg Lodge
         //
         cy.log(">> Guest information & Extras")
         cy.get('[name="noAdults"]').select('1') // 1 Adult
@@ -67,7 +106,8 @@ describe('Holiday Touring booking flow E2E', async function () {
         cy.get('[name="Extras[TOURDOG].Quantity"]').select('1') // Lets take a dog
         //
         cy.get('.text-right .btn-primary').first().click() // Continue
-        //
+
+
         cy.log(">> Your details")
         cy.get('[name="title"]').select(cy.config().testUser.title)
         cy.get('[name="firstname"]').type(cy.config().testUser.firstname)
@@ -75,19 +115,20 @@ describe('Holiday Touring booking flow E2E', async function () {
         cy.get('[name="phoneno"]').type(cy.config().testUser.phoneno)
         cy.get('[name="email"]').first().type(cy.config().testUser.email)
         cy.get('[name="PostcodeLookup"]').type(cy.config().testUser.postcode)
+        cy.wait(2000)
         cy.get('.js-postcode-lookup').first().click() // Find address
-        cy.wait(1000)
+        cy.wait(2000)
         cy.get('#drpAddresses').select(cy.config().testUser.fulladdress)
-        cy.wait(1000)
-        cy.get('input[type="checkbox"][name="termsandconditionsagreed"]').click({ force: true }) // Click T&C's
-        //
+        cy.wait(2000)
+        cy.get('input[type="checkbox"][name="termsandconditionsagreed"]').click({ force: true }) // T&C's
+
+        // Submit
         if (cy.config().submitBooking) {
             cy.log("submitBooking has been enabled in the Config file")
-
-            cy.get('.continueToPayment').first().click() // Click continue
+            //
+            cy.get('.continueToPayment').first().click() // Continue
+            cy.wait(2000)
             cy.get('#errorMsg').should('not.be.visible') // Check for errors
-            cy.wait(4000)
-
             //
             cy.log(">> Payment page checks")
             cy.get('#payment-container').should('exist')
@@ -100,7 +141,5 @@ describe('Holiday Touring booking flow E2E', async function () {
         }
 
     })
-
-
 
 })

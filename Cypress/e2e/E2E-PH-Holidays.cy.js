@@ -14,8 +14,11 @@ describe('Holiday Booking flow E2E', async function () {
     
           cy.visit(Cypress.config().baseUrl)
           cy.url().should('eq', Cypress.config().baseUrl)
-          cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
-          cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+          if (window.location.href.indexOf("www.parkholidays.com") > -1)
+          {
+            cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+            cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+          }
         })
       })
 

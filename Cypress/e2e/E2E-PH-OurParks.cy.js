@@ -17,7 +17,13 @@ describe('Our Holiday Parks flow E2E', function () {
       cy.viewport(size[0], size[1]) // Change screen size
 
       cy.visit(Cypress.config().baseUrl)
-      cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+      cy.url().should("eq", Cypress.config().baseUrl);
+      if (window.location.href.indexOf("www.parkholidays.com") > -1)
+      {
+        cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+        cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+      }
+      
       cy.get('#site-blocks .site-block__info--ourparks .button--primary').click() //Our Parks
       cy.get('#ourparks h1').should('include.text', 'Explore a huge range of Holiday Parks')
       cy.get('#filter').should('exist')
