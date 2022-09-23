@@ -29,7 +29,7 @@ describe('Holiday Booking flow E2E', async function () {
         cy.log(">> Complete availability search form")
         cy.log("Test to ensure both test data and website are displaying the correct Parks")
         cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', cy.config().phHolidayParks.length)
-        cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
+        //cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
         cy.wait(500)
         cy.get('[name="monthOfArrival"] option').its('length').should('be.gt', 1)
         cy.get('[name="monthOfArrival"]').select(6) // Assumes availability in 6 months

@@ -14,12 +14,14 @@ module.exports = defineConfig({
     specPattern: "./cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
     submitBooking: false, // set to true to actually book visits, submit to get to payment page etc
 
-    baseUrl: 'https://huj-qa-release.vercel.app/',
+    
+    baseUrl: 'https://staging-www.parkholidays.io/',
+    //baseUrl: 'https://huj-qa-release.vercel.app/',
     //baseUrl: 'https://www.parkholidays.com/',
     //baseUrl: 'https://release-ouj-master.vercel.app/',
 
-    //siteMapUrl: 'https://www.parkholidays.com/sitemap.xml',
-    siteMapUrl: 'https://release-ouj-master.vercel.app/sitemap.xml',
+    siteMapUrl: 'https://www.parkholidays.com/sitemap.xml',
+    //siteMapUrl: 'https://release-ouj-master.vercel.app/sitemap.xml',
    
 
     phHolidayParks: ["Alberta", "Ashbourne Heights", "Birchington Vale", "Bodmin", "Bowland Fell", "Broadland Sands", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "Winchelsea Sands", "Wood Farm"],
@@ -28,10 +30,10 @@ module.exports = defineConfig({
 
     testUser: {
       title: "Mr",
-      firstname: "SimonPHUKTest",
-      surname: "FryPHUKTest",
+      firstname: "firstnamePHUKTest",
+      surname: "surnamePHUKTest",
       phoneno: "01234567890",
-      email: "phtestaccount@email.com",
+      email: "phuktest@email.com",
       postcode: "TN39 5ES",
       fulladdress: "Park Holidays UK Ltd, Glovers House Glovers End Bexhill-on-Sea"
     }
