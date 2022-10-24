@@ -37,8 +37,8 @@ describe("Ownership Flow E2E", async function () {
     sizes.forEach((size) => {
       cy.viewport(size[0], size[1]) // Change screen size
 
-      cy.visit(Cypress.config().baseUrl);
-      cy.url().should("eq", Cypress.config().baseUrl);
+      cy.visit(Cypress.config().ph.baseUrl);
+      cy.url().should("eq", Cypress.config().ph.baseUrl);
       cookieClose()
     })
   })
@@ -70,7 +70,7 @@ describe("Ownership Flow E2E", async function () {
     //
     cy.log(">> Complete availability search form")
     cy.log("Test to ensure both test data and website are displaying the correct Parks")
-    cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', Cypress.config().phOwnershipParks.length)
+    cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', Cypress.config().ph.ownershipParks.length)
     cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
     cy.get('[name="priceRange"] option').its('length').should('be.gt', 1)
     cy.get('[name="priceRange"]').select(3) // £30k - £50k

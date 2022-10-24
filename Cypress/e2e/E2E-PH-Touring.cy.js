@@ -12,8 +12,8 @@ describe('Holiday Touring booking flow E2E', async function () {
         sizes.forEach((size) => {
           cy.viewport(size[0], size[1]) // Change screen size
     
-          cy.visit(Cypress.config().baseUrl)
-          cy.url().should('eq', Cypress.config().baseUrl)
+          cy.visit(Cypress.config().ph.baseUrl)
+          cy.url().should('eq', Cypress.config().ph.baseUrl)
           if (window.location.href.indexOf("www.parkholidays.com") > -1)
           {
             cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
@@ -29,7 +29,7 @@ describe('Holiday Touring booking flow E2E', async function () {
         //
         cy.log(">> Complete availability search form")
         cy.log("Test to ensure both test data and website are displaying the correct Parks")
-        cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', cy.config().phTouringParks.length)
+        cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', cy.config().ph.touringParks.length)
         cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
         cy.wait(500)
         cy.get('[name="monthOfArrival"] option').its('length').should('be.gt', 1)
@@ -98,7 +98,7 @@ describe('Holiday Touring booking flow E2E', async function () {
         } else {
             cy.log("submitBooking has been disabled in the Config file")
         }
-
+        cy.log("Finish")
     })
 
 

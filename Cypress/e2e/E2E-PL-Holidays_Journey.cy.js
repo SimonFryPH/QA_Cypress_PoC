@@ -6,16 +6,15 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 const sizes = Cypress.config().screenSizes
 
-describe('Holiday Booking flow E2E', async function () {
+describe('NEW Holiday Booking flow E2E', async function () {
 
     beforeEach(() => {
         sizes.forEach((size) => {
           cy.viewport(size[0], size[1]) // Change screen size
     
-          cy.visit(Cypress.config().ph.baseUrl)
-          cy.url().should('eq', Cypress.config().ph.baseUrl)
-          if (window.location.href.indexOf("www.parkholidays.com") > -1)
-          {
+          cy.visit(Cypress.config().pl.baseUrl)
+          cy.url().should('eq', Cypress.config().pl.baseUrl)
+          if (window.location.href.indexOf("parkleisureholidays.co.uk") > -1) {
             cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
             cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
           }
@@ -23,25 +22,28 @@ describe('Holiday Booking flow E2E', async function () {
       })
 
     it('Should search and book a Holiday', async function () {
-        cy.get('.site-block .button--holiday').click()
-        cy.get('.text--primary').should('include.text', 'Caravan Holidays & Short Breaks')
-        //
-        cy.log(">> Complete availability search form")
-        cy.log("Test to ensure both test data and website are displaying the correct Parks")
-        cy.get('[name="location"] option:not([value="all"]):not([value^="C"])').its('length').should('be.eq', cy.config().phHolidayParks.length)
-        //cy.get('[name="location"]').select("All Parks") // Defaults to "All Parks"
-        cy.wait(500)
-        cy.get('[name="monthOfArrival"] option').its('length').should('be.gt', 1)
-        cy.get('[name="monthOfArrival"]').select(6) // Assumes availability in 6 months
-        cy.wait(5000)
-        cy.get('[name="nights"] option').its('length').should('be.gt', 1)
-        cy.get('[name="nights"]').select(1) // 3 nights
-        cy.wait(2000)
-        cy.get('[name="dateOfArrival"] option').its('length').should('be.gt', 1)
-        cy.get('[name="dateOfArrival"]').select(1) // First date in list
-        cy.wait(1000)
-        cy.get('[name="availability"] .button--holiday').click() // Search
-        cy.wait(1000)
+
+        cy.get('#availability-form h2').should('include.text', 'Your Park')
+        cy.get('#availability-form h2').should('include.text', 'Leisure Holiday awaits…')
+
+        cy.log(">> Complete Legacy site availability search form")
+        /*
+        cy.get('[name="holidayType"]').select('Holidays')
+        cy.get('[name="park"] option').select('All parks')
+        cy.get('[name="arrival-date"] option').select('not set') // just take default
+        cy.get('[name="depart-date"] option').select('not set') // just take default
+        cy.get('[placeholder="Add guests"] option').select('not set') // just take default
+        cy.get('[type="submit"]').click()
+        */
+
+        cy.log(">> Navigate to new site search")
+        cy.visit(Cypress.config().pl.baseSearchUrl)
+        cy.url().should('eq', Cypress.config().pl.baseSearchUrl)
+        
+        if (window.location.href.indexOf("parkleisureholidays.co.uk") > -1) {
+            //cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+            cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
+        }
 
         // New top search bar checks
         cy.get('[role="search"]').should('exist')
@@ -58,10 +60,75 @@ describe('Holiday Booking flow E2E', async function () {
         cy.get('[aria-label="Map with interactive pins related to your search"]').should('be.visible')
         //cy.get('[aria-label="Map"] > div:nth-of-type(1)').contains('translate(0px, 0px)') // Display UK - not working
         //cy.contains('[aria-label="Map"] > div:nth-of-type(1)', 'translate(0px, 0px)') // Display UK - not working
+ 
+ 
+        // new search bar in new website
+        cy.get('[role="search"] :nth-child(2)').first().click() // Click top search bar
 
+        //Product
+        cy.get('div._19mw99b div._wtz1co').eq(0).click() // Expand Product
+        cy.get('._3hmsj [aria-label="Touring and camping"]').click() // Product/Touring and Camping
+        cy.get('._3hmsj [aria-label="Holidays"]').click() // Product/Holidays
+
+        //Location
+        cy.get('div._19mw99b div._wtz1co').eq(1).click()  // Expand Location
+
+        cy.get('._3hmsj [aria-label="Region"]').click() // Select Region
+        cy.get('._3hmsj input').eq(0).click() // South West
+        cy.get('._3hmsj input').eq(1).click() // Wales
+        cy.get('._3hmsj input').eq(2).click() // West Midlands
+        cy.get('._3hmsj input').eq(3).click() // Yorkshire & the Humber
+        cy.get('._3hmsj [aria-label="Go back"]').click() // Back
+
+        cy.get('._3hmsj [aria-label="County"]').click() // Select County
+        cy.get('._3hmsj input').eq(0).click() // Cornwall
+        cy.get('._3hmsj input').eq(1).click() // Herefordshire
+        cy.get('._3hmsj input').eq(2).click() // Wales
+        cy.get('._3hmsj input').eq(3).click() // Yorkshire
+        cy.get('._3hmsj [aria-label="Go back"]').click() // Back
+
+        cy.get('._3hmsj [aria-label="Park"]').click() // Select Park
+        cy.get('._3hmsj input').eq(0).click() // Brynteg
+        cy.get('._3hmsj input').eq(1).click() // Littondale
+        cy.get('._3hmsj input').eq(2).click() // Malvern View
+        cy.get('._3hmsj input').eq(3).click() // Par Sands
+        cy.get('._3hmsj input').eq(4).click() // Pentire
+        cy.get('._3hmsj [aria-label="Go back"]').click() // Back
+        
+        cy.get('._3hmsj [aria-label="All locations"]').click() // Location
+
+        //Arival Date
+        cy.get('div._19mw99b div._wtz1co').eq(2).click()  // Expand Arrival date
+        cy.wait(1000)
+        cy.get('._3hmsj select').eq(0).select(2) // Month
+        cy.wait(1000)
+        cy.get('._3hmsj select').eq(1).select(1) // How long
+        cy.wait(1000)
+        cy.get('._3hmsj select').eq(2).select(1) // Arrival date
+
+        //Guests
+        cy.get('div._19mw99b div._wtz1co').eq(3).click()  // Expand Guests
+        cy.get('._3hmsj #stepper-adults [aria-label="increase value"]').click()
+        cy.get('._3hmsj #stepper-adults [aria-label="decrease value"]').click()
+        cy.get('._3hmsj #stepper-adults [aria-label="increase value"]').click()
+        cy.get('._3hmsj #stepper-children [aria-label="increase value"]').click()
+        cy.get('._3hmsj #stepper-children [aria-label="decrease value"]').click()
+        cy.get('._3hmsj #stepper-children [aria-label="increase value"]').click()
+        cy.get('._3hmsj #stepper-infants [aria-label="increase value"]').click()
+        cy.get('._3hmsj #stepper-infants [aria-label="decrease value"]').click()
+        cy.get('._3hmsj #stepper-infants [aria-label="increase value"]').click()
+
+        //Pets
+        cy.get('._3hmsj [aria-label="Pet friendly"]').click()
+
+        //Search
+        cy.get('._1x9emkeo').click()
+
+
+        //Search results
         cy.log(">> Click first location record")
         cy.get('[itemprop="itemListElement"]').its('length').should('be.gt', 0)
-        cy.get('[itemprop="itemListElement"]').first().click() //eg Landscove
+        cy.get('[itemprop="itemListElement"]').first().click() //eg Brynteg
         //
         // Page checks
         cy.get('[aria-label="Listing image 1, Show all photos"]').should('exist')
@@ -70,12 +137,12 @@ describe('Holiday Booking flow E2E', async function () {
         cy.get('div._4mwgyc > div._mzo65h > div:nth-child(2) div._1t2btyf > svg').its('length').should('be.gt', 0) // Park highlights count
         cy.get('div:nth-child(2) > div > p').should('exist') // About 
         //
-        cy.get('[role="tablist"] button:nth-child(1)').should('include.text', 'Park Amenities') 
-        cy.get('[role="tablist"] button:nth-child(2)').should('include.text', "What's On") 
-        cy.get('[role="tablist"] button:nth-child(3)').should('include.text', 'Local Area') 
+        cy.get('#tab--enquire-form-tabs span').should('include.text', 'Park Amenities') 
+        cy.get('#tab--enquire-form-tabs--2 span').should('include.text', 'Local Area') 
 
-        //
-        cy.get('[role="tablist"] button:nth-child(1)').click()
+       
+
+        //cy.get('[role="tablist"] button:nth-child(1)').click()
         // enable this of black amenities button exists
         //cy.get('[role="tablist"] button:nth-child(1)').invoke('text')
         //.then((text)=>{ 
@@ -86,6 +153,8 @@ describe('Holiday Booking flow E2E', async function () {
             //cy.get('[aria-label="Park amenities"] [aria-label="Close"]').first().click() // Close amenities modal
         //})
         //
+
+        
         cy.get('div:nth-child(3) > div._1yxo37v h2').should('include.text', 'Park location') 
         cy.get('[aria-roledescription="map"]').should('exist')
         cy.get('#availability-results > section > div > h2').should('include.text', 'Accommodation options') 
@@ -128,6 +197,9 @@ describe('Holiday Booking flow E2E', async function () {
         } else {
             cy.log("submitBooking has been disabled in the Config file")
         }
+
+
+
 
     })
 
