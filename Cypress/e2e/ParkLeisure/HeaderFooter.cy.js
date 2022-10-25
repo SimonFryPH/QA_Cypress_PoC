@@ -58,7 +58,10 @@ describe('Holiday Booking flow E2E', async function () {
     cy.get('footer address').should('include.text', 'York Business Park')
     cy.get('footer address').should('include.text', 'Nether Poppleton')
     cy.get('footer address').should('include.text', 'YO26 6RS')
-    cy.get('div.l-footer__left > div:nth-child(3) [href="mailto:enquiries@parkleisure.co.uk"]').should('include.text', 'enquiries@parkleisure.co.uk')
+    //cy.get('.l-footer__col .e-icon-link').should('include.text', 'enquiries@parkleisure.co.uk')
+    cy.get('.l-footer__col .e-icon-link').should('include.text', 'ownershipenquiries@parkleisure.co.uk')
+    cy.get('.l-footer__all').should('include.text', 'Park Leisure 2000 Limited, Park Leisure 2000 (Cornwall) Limited and Park Leisure 2000 (Northumberland) Limited who are all registered in England (Reg. No’s 03352005,05262097 & 04268282) and are authorised and regulated by the Financial Conduct Authority (FCA) for consumer credit broking and general insurance & introduction activities under registration numbers 668081, 660778, 660777, 413870, 472809 & 414279')
+    cy.get('.l-footer__all').should('include.text', 'The Park Leisure companies are part of Park Holidays UK Limited, who are registered in England (Reg. No. 02434151) are authorised and regulated by the Financial Conduct Authority (FCA) for consumer credit broking and general insurance & introduction activities under registration numbers 669336 & 717823.')
 
     //ENQUIRE
     cy.get('div.l-footer__left > div:nth-child(2) > h4:nth-child(3)').should('include.text', 'Enquire')

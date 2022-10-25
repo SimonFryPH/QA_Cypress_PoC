@@ -43,7 +43,7 @@ describe("Ownership Flow E2E", async function () {
     })
   })
 
-  it('Should Search Holiday homes', function () {
+  it('Should Search Holiday homes (ownership)', function () {
 
     //cy.get('.site-block__info--ownership .button--ownership').click()
     cy.get('#site-blocks .button--ownership').click()
