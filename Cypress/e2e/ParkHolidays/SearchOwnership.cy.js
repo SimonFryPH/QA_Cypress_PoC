@@ -38,7 +38,7 @@ describe("Ownership Flow E2E", async function () {
       cy.viewport(size[0], size[1]) // Change screen size
 
       cy.visit(Cypress.config().ph.baseUrl);
-      cy.url().should("eq", Cypress.config().ph.baseUrl);
+      cy.url().should("contain", Cypress.config().ph.baseUrl);
       cookieClose()
     })
   })

@@ -12,7 +12,7 @@ describe('Our Holiday Parks flow E2E', function () {
     sizes.forEach((size) => {
       cy.viewport(size[0], size[1]) // Change screen size
       cy.visit(Cypress.config().ph.baseUrl)
-      cy.url().should("eq", Cypress.config().ph.baseUrl);
+      cy.url().should("contain", Cypress.config().ph.baseUrl);
       if (window.location.href.indexOf("www.parkholidays.com") > -1)
       {
         cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
@@ -92,7 +92,7 @@ describe('Our Holiday Parks flow E2E', function () {
       cy.get('input[type="checkbox"][name="offers"]').eq(0).click({ force: true }) // Privacy Policy
 
       // Submit
-      if (cy.config().submitBooking) {
+      if (cy.config().submit) {
         cy.log("submitBooking has been enabled in the Config file")
 
         cy.get('div._pmbod8 > form > div._13c9vby > button').first().click() // Submit
@@ -100,7 +100,7 @@ describe('Our Holiday Parks flow E2E', function () {
         cy.get('div._pmbod8').should('include.text', 'Thank you for your request to arrange a visit, we will be in contact shortly.')
 
       } else {
-        cy.log("submitBooking has been disabled in the Config file")
+        cy.log("submit has been disabled in the Config file")
       }
 
     })

@@ -13,7 +13,7 @@ describe('Holiday Booking flow E2E', async function () {
       cy.viewport(size[0], size[1]) // Change screen size
 
       cy.visit(Cypress.config().pl.baseUrl)
-      cy.url().should('eq', Cypress.config().pl.baseUrl)
+      cy.url().should('contain', Cypress.config().pl.baseUrl)
       if (window.location.href.indexOf("www.parkleisureholidays.co.uk") > -1) {
         cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
         cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner

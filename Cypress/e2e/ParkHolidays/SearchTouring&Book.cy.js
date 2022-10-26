@@ -13,7 +13,7 @@ describe('Holiday Touring booking flow E2E', async function () {
           cy.viewport(size[0], size[1]) // Change screen size
     
           cy.visit(Cypress.config().ph.baseUrl)
-          cy.url().should('eq', Cypress.config().ph.baseUrl)
+          cy.url().should('contain', Cypress.config().ph.baseUrl)
           if (window.location.href.indexOf("www.parkholidays.com") > -1)
           {
             cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
@@ -80,23 +80,20 @@ describe('Holiday Touring booking flow E2E', async function () {
         cy.get('#drpAddresses').select(cy.config().testUser.fulladdress)
         cy.wait(1000)
         cy.get('input[type="checkbox"][name="termsandconditionsagreed"]').click({ force: true }) // Click T&C's
-        //
-        if (cy.config().submitBooking) {
-            cy.log("submitBooking has been enabled in the Config file")
 
+        //
+        if (cy.config().submit) {
             cy.get('.continueToPayment').first().click() // Click continue
             cy.get('#errorMsg').should('not.be.visible') // Check for errors
             cy.wait(4000)
-
             //
             cy.log(">> Payment page checks")
             cy.get('#payment-container').should('exist')
             cy.get('#payment-container').should('be.visible')
             cy.get('.booking-summary').should('exist')
             cy.get('.booking-summary').should('be.visible')
-
         } else {
-            cy.log("submitBooking has been disabled in the Config file")
+            cy.log("submit has been disabled in the Config file")
         }
         cy.log("Finish")
     })

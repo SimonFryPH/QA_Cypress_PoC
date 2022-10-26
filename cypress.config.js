@@ -13,17 +13,36 @@ module.exports = defineConfig({
   e2e: {
     supportFile: false,
     specPattern: "./cypress/e2e/**/**/*.cy.{js,jsx,ts,tsx}",
-    submitBooking: false, // set to true to actually book visits, submit to get to payment page etc
-
+    submit: false, // set to true to actually book visits, submit to get to payment page, registration etc
+    testemailsuffix: "@phcypresstestemail.com",
+    
     ph: {
+      siteMapUrl: 'https://www.parkholidays.com/sitemap.xml/',
+      //siteMapUrl: 'https://release-ouj-master.vercel.app/sitemap.xml/',
+
       baseUrl: 'https://www.parkholidays.com/',
       //baseUrl: 'https://huj-qa-release.vercel.app/',
       //baseUrl: 'https://staging-www.parkholidays.io/',
       //baseUrl: 'https://release-ouj-master.vercel.app/',
-      siteMapUrl: 'https://www.parkholidays.com/sitemap.xml/',
-      //siteMapUrl: 'https://release-ouj-master.vercel.app/sitemap.xml/',
-      myholidayUrl: 'https://myholiday.parkholidays.com/login',
-      ownersUrl: 'https://owners.parkholidays.com/login',
+
+      my: {
+        url: 'https://my.parkholidays.com/',
+        emailUser: 'marketing@parkholidays.com',
+        password: 'Marketing101',
+        customerNumber: 'CUS999996'
+      },
+      
+      owners: {
+        url: 'https://owners.parkholidays.com/',
+        emailuser: 'marketing@parkholidays.com',
+        password: 'Marketing101'
+      },
+
+      myHoliday: {
+        url: 'https://myholiday.parkholidays.com/',
+        bookingref: '',
+        surname: ''
+      },
 
       holidayParks: ["Alberta", "Ashbourne Heights", "Birchington Vale", "Bodmin", "Bowland Fell", "Broadland Sands", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "Winchelsea Sands", "Wood Farm"],
       touringParks: ["Ashbourne Heights", "Birchington Vale", "Burghead", "Carlton Meres", "Dovercourt", "Golden Sands", "Hedley Wood", "Marlie", "Sand le Mere", "Seaview", "Silver Sands", "Steeple Bay", "Trevella", "West Mersea", "Wood Farm"],
@@ -31,9 +50,10 @@ module.exports = defineConfig({
     },
 
     pl: {
+      siteMapUrl: 'https://www.parkleisureholidays.co.uk/sitemap.xml',
       baseUrl: 'https://www.parkleisureholidays.co.uk/',
       baseSearchUrl: 'https://search.parkleisureholidays.co.uk/holidays/search/',
-      siteMapUrl: 'https://www.parkleisureholidays.co.uk/sitemap.xml',
+      
       holidayParks: ["Brynteg", "Littondale", "Malvern View", "Par Sands", "Pentire"],
       touringParks: ["Brynteg", "Littondale", "Malvern View", "Par Sands", "Pentire"],
       ownershipParks: ["Brynteg", "Littondale", "Malvern View", "Par Sands", "Pentire"]
