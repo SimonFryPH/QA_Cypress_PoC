@@ -4,8 +4,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 
-const sizes = Cypress.config().screenSizes
-
 function cookieClose() {
   cy.log(">> Cookie Close")
   if (window.location.href.indexOf("www.parkholidays.com") > -1)
@@ -27,18 +25,19 @@ function killChat() {
   });
 }
 
-describe("Ownership Flow E2E", async function () {
+
+describe("Ownership", async function () {
   this.beforeAll(() => {
     killChat();
   });
 
 
   beforeEach(() => {
-    sizes.forEach((size) => {
+    cy.config().screenSizes.forEach((size) => {
       cy.viewport(size[0], size[1]) // Change screen size
 
-      cy.visit(Cypress.config().ph.baseUrl);
-      cy.url().should("contain", Cypress.config().ph.baseUrl);
+      cy.visit(cy.config().ph.baseUrl);
+      cy.url().should("contain", cy.config().ph.baseUrl);
       cookieClose()
     })
   })

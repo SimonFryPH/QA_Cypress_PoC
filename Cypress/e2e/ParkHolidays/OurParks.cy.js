@@ -4,18 +4,17 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 
-const sizes = Cypress.config().screenSizes
-
-describe('Our Holiday Parks flow E2E', function () {
+describe('Our Holiday Parks', function () {
 
   beforeEach(() => {
-    sizes.forEach((size) => {
+    cy.config().screenSizes.forEach((size) => {
       cy.viewport(size[0], size[1]) // Change screen size
-      cy.visit(Cypress.config().ph.baseUrl)
-      cy.url().should("contain", Cypress.config().ph.baseUrl);
-      if (window.location.href.indexOf("www.parkholidays.com") > -1)
+      cy.visit(cy.config().ph.baseUrl)
+      cy.url().should("contain", cy.config().ph.baseUrl);
+
+      if (window.location.href.indexOf("parkholidays.com") > -1)
       {
-        cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
+        cy.get('#onetrust-accept-btn-handler').click()
         cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
       }
       

@@ -7,3 +7,9 @@ import './ParkHolidays/SearchOwnership.cy.js'
 import './ParkHolidays/SearchTouring&Book.cy.js'
 //import './ParkHolidays/SearchTouring&Book_NEW.cy.js'
 
+
+// Pages requiring a log in
+import './ParkHolidays/my.parkholidays.cy.js'
+import './ParkHolidays/myholiday.parkholidays.cy.js'
+import './ParkHolidays/owners.parkholidays.cy.js'
+

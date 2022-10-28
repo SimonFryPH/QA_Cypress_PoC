@@ -4,12 +4,10 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
-const sizes = Cypress.config().screenSizes
-
 describe('NEW Holiday Booking flow E2E', async function () {
 
     beforeEach(() => {
-        sizes.forEach((size) => {
+        cy.config().screenSizes.forEach((size) => {
             cy.viewport(size[0], size[1]) // Change screen size
 
             cy.visit(Cypress.config().pl.baseUrl)

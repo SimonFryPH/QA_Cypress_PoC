@@ -7,8 +7,11 @@ module.exports = defineConfig({
   //viewportWidth : 1920,
   //viewportHeight : 1080,
   defaultCommandTimeout: 20000,
-  //screenSizes: [[1920, 1028],[320, 568], [768, 1024]],
+  //screenSizes: [ [375, 667]],
   screenSizes: [ [1920, 1028]],
+  //screenSizes: [[1920, 1028],[768, 1024]],
+  //screenSizes: [[1920, 1028],[768, 1024],[375, 667]],
+  
 
   e2e: {
     supportFile: false,
@@ -29,19 +32,21 @@ module.exports = defineConfig({
         url: 'https://my.parkholidays.com/',
         emailUser: 'marketing@parkholidays.com',
         password: 'Marketing101',
-        customerNumber: 'CUS999996'
+        customerNumber: 'CUS999996',
+        park: 'Marlie',
+        pitch: 'DEPITCH20'
       },
       
       owners: {
         url: 'https://owners.parkholidays.com/',
-        emailuser: 'marketing@parkholidays.com',
+        emailUser: 'marketing@parkholidays.com',
         password: 'Marketing101'
       },
 
       myHoliday: {
         url: 'https://myholiday.parkholidays.com/',
-        bookingref: '',
-        surname: ''
+        bookingRef: 'BKG3412329',
+        surname: 'Fry'
       },
 
       holidayParks: ["Alberta", "Ashbourne Heights", "Birchington Vale", "Bodmin", "Bowland Fell", "Broadland Sands", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "Winchelsea Sands", "Wood Farm"],

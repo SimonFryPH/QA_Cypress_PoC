@@ -4,17 +4,15 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 
-const sizes = Cypress.config().screenSizes
-
-describe('Holiday Booking flow E2E', async function () {
+describe('Header, Footer and menus', async function () {
 
   beforeEach(() => {
-    sizes.forEach((size) => {
+    cy.config().screenSizes.forEach((size) => {
       cy.viewport(size[0], size[1]) // Change screen size
 
-      cy.visit(Cypress.config().pl.baseUrl)
-      cy.url().should('contain', Cypress.config().pl.baseUrl)
-      if (window.location.href.indexOf("www.parkleisureholidays.co.uk") > -1) {
+      cy.visit(cy.config().pl.baseUrl)
+      cy.url().should('contain', cy.config().pl.baseUrl)
+      if (window.location.href.indexOf("parkleisureholidays.co.uk") > -1) {
         cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
         cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
       }

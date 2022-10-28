@@ -4,19 +4,15 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
-const sizes = Cypress.config().screenSizes
-
 describe('owners.parkholidays.com', async function () {
 
     beforeEach(() => {
-        sizes.forEach((size) => {
+        cy.config().screenSizes.forEach((size) => {
             cy.viewport(size[0], size[1]) // Change screen size
-            cy.visit(Cypress.config().ph.owners.url)
-            cy.url().should('contain', Cypress.config().ph.owners.url)
-
+            cy.visit(cy.config().ph.owners.url)
+            cy.url().should('contain', cy.config().ph.owners.url)
         })
     })
-
 
     it('Should display login page', function () {
 
@@ -34,50 +30,85 @@ describe('owners.parkholidays.com', async function () {
         // Add more tests from this page
     })
 
-
     it('Should not log in with invalid password', function () {
-
-        cy.get('#email').type(cy.config().ph.my.emailUser)
+        cy.get('#email').type(cy.config().ph.owners.emailUser)
         cy.get('#password').type('xxxxx')
         cy.get('[type="submit"]').eq(1).click()
         cy.get('p').should('include.text', 'Incorrect username or password.')
-
     })
 
     it('Should not log in with unregistered email', function () {
-
         cy.get('#email').type(dayjs().format("YYYYMMDDTHHmmss") + cy.config().testemailsuffix)
-        cy.get('#password').type(cy.config().ph.my.password)
+        cy.get('#password').type(cy.config().ph.owners.password)
         cy.get('[type="submit"]').eq(1).click()
         cy.get('p').should('include.text', 'Incorrect username or password.')
-
     })
 
+    describe('Should log in with valid credentials', async function () {
 
+        beforeEach(() => {
+            cy.get('#email').type(cy.config().ph.owners.emailUser)
+            cy.get('#password').type(cy.config().ph.owners.password)
+            cy.get('[type="submit"]').eq(1).click()
+            cy.wait(2000)
+        })
 
-    it('Should log in with valid credentials and have access to other areas', function () {
+        it('and access the side menu items', function () {
+            cy.wait(2000)
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(0).should('include.text', 'Home')
+            cy.get('[type="submit"]').eq(0).click() // Hide side menu
 
-        cy.get('#email').type(cy.config().ph.my.emailUser)
-        cy.get('#password').type(cy.config().ph.my.password)
-        cy.get('[type="submit"]').eq(1).click()
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(1).should('include.text', 'News & Special offers')
+            cy.get('nav a').eq(1).click()
+            cy.url().should('contain', '/special-offers')
 
-        // Side Menu
-        cy.get('[role="banner"] [title="open menu"]').click()
-        cy.get('nav a').eq(0).should('include.text', 'Home')
-        cy.get('nav a').eq(1).should('include.text', 'News & Special offers')
-        cy.get('nav a').eq(2).should('include.text', 'Managers Message')
-        cy.get('nav a').eq(3).should('include.text', 'Events')
-        cy.get('nav a').eq(4).should('include.text', 'Information & Resources')
-        cy.get('nav a').eq(5).should('include.text', 'FAQs')
-        cy.get('nav a').eq(6).should('include.text', 'Customer Care')
-        cy.get('nav a').eq(7).should('include.text', 'Contact Us')
-        cy.get('nav a').eq(8).should('include.text', 'My Account')
-        cy.get('nav a').eq(9).should('include.text', 'Logout')
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(2).should('include.text', 'Managers Message')
+            cy.get('nav a').eq(2).click()
+            cy.url().should('contain', '/managers-message')
 
-        cy.get('[type="submit"]').eq(0).click() // Hide side menu
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(3).should('include.text', 'Events')
+            cy.get('nav a').eq(3).click()
+            cy.url().should('contain', '/events')
+
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(4).should('include.text', 'Information & Resources')
+            cy.get('nav a').eq(4).click()
+            cy.url().should('contain', '/information-resources')
+
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(5).should('include.text', 'FAQs')
+            cy.get('nav a').eq(5).click()
+            cy.url().should('contain', '/frequently-asked-questions')
+
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(6).should('include.text', 'Customer Care')
+            cy.get('nav a').eq(6).click()
+            cy.url().should('contain', '/customer-care')
+
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(7).should('include.text', 'Contact Us')
+            cy.get('nav a').eq(7).click()
+            cy.url().should('contain', '/contact-us')
+
+            cy.get('[role="banner"] [title="open menu"]').click()
+            cy.get('nav a').eq(8).should('include.text', 'My Account')
+            //cy.get('nav a').eq(8).click() 
+
+            cy.get('nav a').eq(9).should('include.text', 'Logout')
+            cy.get('nav a').eq(9).click()
+            cy.url().should('contain', '/login')
+
+        })
+
+        it('and view details on the home page', function () {
+            // Add more tests from this page
+        })
 
     })
-
 
     it('Should be able to register', function () {
 
