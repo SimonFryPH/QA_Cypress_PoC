@@ -7,11 +7,12 @@ module.exports = defineConfig({
   //viewportWidth : 1920,
   //viewportHeight : 1080,
   defaultCommandTimeout: 20000,
-  //screenSizes: [ [375, 667]],
-  screenSizes: [ [1920, 1028]],
+  screenSizes: [ [375, 667]],
+  //screenSizes: [ [1920, 1028]],
   //screenSizes: [[1920, 1028],[768, 1024]],
   //screenSizes: [[1920, 1028],[768, 1024],[375, 667]],
-  
+  screenSizes: [[768, 1024],[375, 667],[1920, 1028]],
+  //screenSizes: [[375, 667],[1920, 1028]],
 
   e2e: {
     supportFile: false,

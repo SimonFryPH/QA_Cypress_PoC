@@ -4,21 +4,19 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 
-describe('Header, Footer and menus', async function () {
+cy.config().screenSizes.forEach((size) => {
 
-  beforeEach(() => {
-    cy.config().screenSizes.forEach((size) => {
+  describe('Header, Footer and menus ' + size[0] + ', ' + size[1], async function () {
+
+    beforeEach(() => {
       cy.viewport(size[0], size[1]) // Change screen size
-
       cy.visit(cy.config().ph.baseUrl)
       cy.url().should('contain', cy.config().ph.baseUrl)
       if (window.location.href.indexOf("parkholidays.com") > -1) {
         cy.get('#onetrust-accept-btn-handler').click()
         cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
       }
-
     })
-  })
 
     it('Should access to the side menu bar', function () {
 
@@ -35,4 +33,6 @@ describe('Header, Footer and menus', async function () {
 
     })
 
-})
+  })
+
+}) //foreach screenSizes
