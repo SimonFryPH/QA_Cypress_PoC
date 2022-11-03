@@ -8,11 +8,11 @@ module.exports = defineConfig({
   //viewportHeight : 1080,
   defaultCommandTimeout: 20000,
   screenSizes: [ [375, 667]],
-  //screenSizes: [ [1920, 1028]],
-  //screenSizes: [[1920, 1028],[768, 1024]],
-  //screenSizes: [[1920, 1028],[768, 1024],[375, 667]],
-  screenSizes: [[768, 1024],[375, 667],[1920, 1028]],
-  //screenSizes: [[375, 667],[1920, 1028]],
+  //screenSizes: [ [1920, 1080]],
+  //screenSizes: [[1920, 1080],[768, 1024]],
+  //screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
+  screenSizes: [[768, 1024],[375, 667],[1920, 1080]],
+  //screenSizes: [[375, 667],[1920, 1080]],
 
   e2e: {
     supportFile: false,
@@ -65,7 +65,11 @@ module.exports = defineConfig({
       ownershipParks: ["Brynteg", "Littondale", "Malvern View", "Par Sands", "Pentire"]
     },
 
-   
+    scuk: {
+      baseUrl: 'https://sun-corporate.vercel.app/'
+    },
+
+
     testUser: {
       title: "Mr",
       firstname: "firstnamePHUKTest",
