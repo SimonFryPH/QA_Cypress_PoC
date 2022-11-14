@@ -10,8 +10,8 @@ module.exports = defineConfig({
   screenSizes: [ [375, 667]],
   //screenSizes: [ [1920, 1080]],
   //screenSizes: [[1920, 1080],[768, 1024]],
-  //screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
-  screenSizes: [[768, 1024],[375, 667],[1920, 1080]],
+  screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
+  //screenSizes: [[768, 1024],[375, 667],[1920, 1080]],
   //screenSizes: [[375, 667],[1920, 1080]],
 
   e2e: {

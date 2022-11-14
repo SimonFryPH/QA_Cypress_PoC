@@ -23,14 +23,18 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('.b-nav-bar__list :nth-child(1) a').should('include.text', 'Request a brochure')
       cy.get('.b-nav-bar__list :nth-child(2) a').should('include.text', 'FAQs')
       cy.get('.b-nav-bar__list :nth-child(3) a').should('include.text', 'Make a Payment')
-      cy.get('.b-nav-bar__list :nth-child(4) a').should('include.text', 'Own a holiday home')
-      cy.get('.b-nav-bar__list :nth-child(5) a').should('include.text', 'Contact')
+
+      //expand "more menu" if width < 861
+      //cy.get('.b-nav-bar__list :nth-child(4) a').should('include.text', 'Own a holiday home')
+      //cy.get('.b-nav-bar__list :nth-child(5) a').should('include.text', 'Contact')
 
       cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(1) > a').should('include.text', 'Our Locations')
       cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(2) > a').should('include.text', 'The Park Leisure Experience')
+
+      //expand "more menu" if width < 1240
       cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(3) > a').should('include.text', 'Find your perfect break')
       cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(4) > a').should('include.text', 'Offers')
-      //cy.get('div.l-top-nav__nav > div:nth-child(2) button').should('include.text', 'More') //not working
+      //cy.get('div.l-top-nav__nav > div:nth-child(2) button').should('include.text', 'More') 
 
     })
 
@@ -65,6 +69,9 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('div.l-footer__left > div:nth-child(2) [href="/request-a-brochure"]').should('include.text', 'Request a brochure')
       cy.get('div.l-footer__left > div:nth-child(2) [href="/contact"]').should('include.text', 'Contact us')
 
+      //POLICY
+      cy.get('.l-footer__col [href="/privacy-policy"]').should('include.text', 'Privacy Policy')
+      cy.get('.l-footer__col [href="/cookie-policy"]').should('include.text', 'Cookie Policy')
 
     })
 
