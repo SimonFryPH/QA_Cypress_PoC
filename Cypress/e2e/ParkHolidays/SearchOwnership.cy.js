@@ -40,9 +40,10 @@ cy.config().screenSizes.forEach((size) => {
 
     it('Should Search Holiday homes (ownership)', function () {
 
-      //cy.get('.site-block__info--ownership .button--ownership').click()
-      cy.get('#site-blocks .button--ownership').click()
+      cy.get('.site-block__info--ownership .button--ownership').eq(0).click()
 
+      cy.get('#site-blocks .button--ownership').click()
+      cy.wait(1500)
       cy.get('h1').should('include.text', 'Caravan Holiday Homes & Lodges for Sale')
       cy.get('[title="Find holiday home"]').click()  //Search Holiday Homes (takes ages)
       //

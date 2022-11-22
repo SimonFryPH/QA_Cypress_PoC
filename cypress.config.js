@@ -7,7 +7,7 @@ module.exports = defineConfig({
   //viewportWidth : 1920,
   //viewportHeight : 1080,
   defaultCommandTimeout: 20000,
-  screenSizes: [ [375, 667]],
+  //screenSizes: [ [375, 667]],
   //screenSizes: [ [1920, 1080]],
   //screenSizes: [[1920, 1080],[768, 1024]],
   screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
@@ -24,9 +24,9 @@ module.exports = defineConfig({
       siteMapUrl: 'https://www.parkholidays.com/sitemap.xml/',
       //siteMapUrl: 'https://release-ouj-master.vercel.app/sitemap.xml/',
 
-      baseUrl: 'https://www.parkholidays.com/',
+      //baseUrl: 'https://www.parkholidays.com/',
       //baseUrl: 'https://huj-qa-release.vercel.app/',
-      //baseUrl: 'https://staging-www.parkholidays.io/',
+      baseUrl: 'https://staging-www.parkholidays.io/',
       //baseUrl: 'https://release-ouj-master.vercel.app/',
 
       my: {
@@ -52,7 +52,7 @@ module.exports = defineConfig({
 
       holidayParks: ["Alberta", "Ashbourne Heights", "Birchington Vale", "Bodmin", "Bowland Fell", "Broadland Sands", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "Winchelsea Sands", "Wood Farm"],
       touringParks: ["Ashbourne Heights", "Birchington Vale", "Burghead", "Carlton Meres", "Dovercourt", "Golden Sands", "Hedley Wood", "Marlie", "Sand le Mere", "Seaview", "Silver Sands", "Steeple Bay", "Trevella", "West Mersea", "Wood Farm"],
-      ownershipParks: ["Alberta", "Ashbourne Heights", "Beauport", "Birchington Vale", "Bowland Fell", "Broadland Sands", "Burghead", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Oaklands", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "West Mersea", "Winchelsea Sands", "Wood Farm"]
+      ownershipParks: ["Alberta", "Ashbourne Heights", "Beauport", "Birchington Vale", "Bowland Fell", "Broadland Sands", "Burghead", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Glendale","Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Oaklands", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "West Mersea", "Winchelsea Sands", "Wood Farm"]
     },
 
     pl: {

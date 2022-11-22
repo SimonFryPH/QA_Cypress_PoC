@@ -65,7 +65,7 @@ cy.config().screenSizes.forEach((size) => {
       })
 
       cy.get(".filters__options .button--touring-light").first().click()
-      cy.wait(3000)
+      cy.wait(5000)
       cy.log(">> CONFIG phTouringParks.length: " + cy.config().ph.touringParks.length) //15
       cy.get("#results-panel .col-xs-12:not([style='display: none;']) .card").its('length').should('be.eq', cy.config().ph.touringParks.length)
       for (var i = 0; i < cy.config().ph.touringParks.length; i++) {
