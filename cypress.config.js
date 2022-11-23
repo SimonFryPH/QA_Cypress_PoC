@@ -24,9 +24,9 @@ module.exports = defineConfig({
       siteMapUrl: 'https://www.parkholidays.com/sitemap.xml/',
       //siteMapUrl: 'https://release-ouj-master.vercel.app/sitemap.xml/',
 
-      //baseUrl: 'https://www.parkholidays.com/',
+      baseUrl: 'https://www.parkholidays.com/',
       //baseUrl: 'https://huj-qa-release.vercel.app/',
-      baseUrl: 'https://staging-www.parkholidays.io/',
+      //baseUrl: 'https://staging-www.parkholidays.io/',
       //baseUrl: 'https://release-ouj-master.vercel.app/',
 
       my: {

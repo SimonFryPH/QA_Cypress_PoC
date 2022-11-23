@@ -37,6 +37,7 @@ cy.config().screenSizes.forEach((size) => {
 
     it('Should search & book a Touring & Camping holiday', function () {
 
+      //this.skip()
       cy.get('#root').then(() => {
         let el = Cypress.$('#root')
 
@@ -212,6 +213,12 @@ cy.config().screenSizes.forEach((size) => {
           cy.get('._1jxweeom ._1s7crnpi').click() // Search button
         }
 
+        //Filters
+        cy.get('#menuItemButton-id').click() // Search button
+        cy.get('input[type="checkbox"][name="Pitch"]').click({ force: true }) // Filter Pitch
+        cy.get('[data-testid="more-filters-modal-submit-button"]').click() // Apply filters
+        cy.wait(1000)
+  
 
         // Check number of locations in search results
         cy.get('h1').should('include.text', 'locations available')
@@ -250,28 +257,10 @@ cy.config().screenSizes.forEach((size) => {
                 cy.log(locationCountB + "  locations");
                 expect(parseInt(locationCountA)).to.eq(parseInt(locationCountB))
               })
-
-
           })
-
       }) // #root
-
     })
 
-
-
-
-
-
-
-
-
-
   })
-
-
-
-
-
 
 }) //foreach screenSizes
