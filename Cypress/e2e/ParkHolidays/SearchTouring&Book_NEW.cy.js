@@ -37,7 +37,6 @@ cy.config().screenSizes.forEach((size) => {
 
     it('Should search & book a Touring & Camping holiday', function () {
 
-      //this.skip()
       cy.get('#root').then(() => {
         let el = Cypress.$('#root')
 
@@ -61,9 +60,23 @@ cy.config().screenSizes.forEach((size) => {
         cy.get('[name="availability"] .button--touring').click() // Search
         cy.wait(1000)
 
+        cy.visit(Cypress.config().ph.baseUrl + 'touring-and-camping/search?') // Temporary until released properly in prod
+
         if (el.outerWidth() < 1016) {
-          // build this
+          cy.get('[aria-label="Edit your search"]').should('exist')
+          cy.get('[aria-live="polite"]').should('include.text', 'All locations')
+          // Update search criteria
+          cy.get('[aria-label="Edit your search"]').click() // expand menu first
+          cy.wait(1000)
+          cy.get('[role="region"] ._c795c3').eq(0).click() // Holiday type
+          cy.get('[aria-label="Touring and camping"]').click() // Touring and camping
+          cy.get('._1taxg680').click() //Next
+          cy.get('[aria-label="All locations"]').click() // Location
+          cy.get('._1taxg680').click() //Next
+
         } else {
+          cy.get('[aria-label="Map with interactive pins related to your search"]').should('exist')
+          cy.get('[aria-label="Map with interactive pins related to your search"]').should('be.visible')
           // New top search bar checks
           cy.get('[role="search"]').should('exist')
           cy.get('[role="search"]').should('be.visible')
@@ -74,24 +87,68 @@ cy.config().screenSizes.forEach((size) => {
           cy.get('[role="search"] button:nth-child(6) ._krjbj').should('include.text', 'Arrival date')
           cy.get('[role="search"] button:nth-child(8) ._krjbj').should('include.text', 'Guests')
           cy.get('[role="search"] button:nth-child(8) > div').should('include.text', '1 guest') // default
-
-          cy.get('[aria-label="Map with interactive pins related to your search"]').should('exist')
-          cy.get('[aria-label="Map with interactive pins related to your search"]').should('be.visible')
-          //cy.get('[aria-label="Map"] > div:nth-of-type(1)').contains('translate(0px, 0px)') // Display UK - not working
-          //cy.contains('[aria-label="Map"] > div:nth-of-type(1)', 'translate(0px, 0px)') // Display UK - not working
+          // Update search criteria
+          cy.get('[role="search"]').eq(0).click() // Click top search bar
+          cy.get('div._19mw99b div._wtz1co').eq(0).click() // Expand Product
+          cy.get('._3hmsj [aria-label="Touring and camping"]').click() // Product/Touring and Camping
+          cy.get('div._19mw99b div._wtz1co').eq(1).click()  // Expand Location
+          cy.get('._3hmsj [aria-label="All locations"]').click() // Location
+          cy.wait(2000)
+          cy.get('div._19mw99b div._wtz1co').eq(2).click()  // Expand Date
         }
 
 
+        //Arival Date
+        cy.wait(1000)
+        cy.get('._3hmsj select').eq(0).select(3) // Month
+        cy.wait(1000)
+        cy.get('._3hmsj select').eq(1).select(2) // How long
+        cy.wait(1000)
+        cy.get('._3hmsj select').eq(2).select(2) // Arrival date
+        cy.wait(1000)
 
+
+        //Guests
+        if (el.outerWidth() < 1016) {
+          cy.get('._1taxg680').click() //Next to guests
+        } else {
+          cy.wait(1000)
+          cy.get('div._19mw99b div._wtz1co').eq(3).click()  // Expand Guests
+        }
+        cy.get('[data-testid="stepper-adults-increase-button"]').click()
+        cy.get('[data-testid="stepper-adults-decrease-button"]').click()
+        cy.get('[data-testid="stepper-adults-increase-button"]').click()
+        cy.get('[data-testid="stepper-children-increase-button"]').click()
+        cy.get('[data-testid="stepper-children-decrease-button"]').click()
+        cy.get('[data-testid="stepper-children-increase-button"]').click()
+        cy.get('[data-testid="stepper-infants-increase-button"]').click()
+        cy.get('[data-testid="stepper-infants-decrease-button"]').click()
+        cy.get('[data-testid="stepper-infants-increase-button"]').click()
+        cy.get('[aria-label="Pet friendly"]').click() // Pet friendly
+        cy.get('[aria-label="Pet friendly"]').click() // Pet friendly unclick
+
+        // Search
+        if (el.outerWidth() < 1016) {
+          cy.get('[data-testid="modal-container"] ._3hmsj').click() // Search button
+        } else {
+          cy.wait(1000)
+          cy.get('._1jxweeom ._1s7crnpi').click() // Search button
+        }
+
+        // Page checks
         cy.log(">> Click first location record")
         cy.get('[itemprop="itemListElement"]').its('length').should('be.gt', 0)
         cy.get('[itemprop="itemListElement"]').first().click() //eg Wood Farm
-        //
-        // Page checks
-        cy.get('[aria-label="Listing image 1, Show all photos"]').should('exist')
+
+        if (el.outerWidth() < 744) {
+          cy.get('[alt="Image 1"]').should('exist')
+        } else {
+          cy.get('[aria-label="Listing image 1, Show all photos"]').should('exist')
+        }
+
         cy.get('h1').should('exist') // Park name
         cy.get('div:nth-child(3) h2').should('include.text', 'Park highlights')
-        cy.get('div._4mwgyc > div._mzo65h > div:nth-child(2) div._1t2btyf > svg').its('length').should('be.gt', 0) // Park highlights count
+        cy.get('div._1t2btyf > svg').its('length').should('be.gt', 0) // Park highlights count
         cy.get('div:nth-child(2) > div > p').should('exist') // About 
         //
         cy.get('[role="tablist"] button:nth-child(1)').should('include.text', 'Park Amenities')
@@ -99,7 +156,7 @@ cy.config().screenSizes.forEach((size) => {
         //cy.get('[role="tablist"] button:nth-child(3)').should('include.text', 'Local Area') 
 
         //
-        cy.get('[role="tablist"] button:nth-child(1)').click()
+        cy.get('[role="tablist"] button:nth-child(1)').eq(0).click()
         // enable this of black amenities button exists
         //cy.get('[role="tablist"] button:nth-child(1)').invoke('text')
         //.then((text)=>{ 
@@ -110,7 +167,7 @@ cy.config().screenSizes.forEach((size) => {
         //cy.get('[aria-label="Park amenities"] [aria-label="Close"]').first().click() // Close amenities modal
         //})
         //
-        cy.get('div:nth-child(3) > div._1yxo37v h2').should('include.text', 'Park location')
+        cy.get('div._1yxo37v h2').eq(0).should('include.text', 'Park location')
         cy.get('[aria-roledescription="map"]').should('exist')
         cy.get('#availability-results > section > div > h2').should('include.text', 'Pitch options')
         cy.get('#availability-results ._1espdem').its('length').should('be.gt', 0)
@@ -214,11 +271,11 @@ cy.config().screenSizes.forEach((size) => {
         }
 
         //Filters
-        cy.get('#menuItemButton-id').click() // Search button
+        cy.get('#menuItemButton-id').click() // Filter button
         cy.get('input[type="checkbox"][name="Pitch"]').click({ force: true }) // Filter Pitch
-        cy.get('[data-testid="more-filters-modal-submit-button"]').click() // Apply filters
+        cy.get('[data-testid="more-filters-modal-submit-button"]').click({force: true}) // Apply filters
         cy.wait(1000)
-  
+
 
         // Check number of locations in search results
         cy.get('h1').should('include.text', 'locations available')

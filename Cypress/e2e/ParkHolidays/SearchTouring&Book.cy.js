@@ -75,10 +75,10 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('[name="Extras[TEXCAR].Quantity"]').select('1') // Set 1 extra car
       cy.get('#bookingExtras .phuk-extra:nth-child(9) a').first().click() // Awning/Kids tent
       cy.get('[name="Extras[TEXAWN].Quantity"]').select('1') // Set 1 extra kids tent
-      cy.get('#bookingExtras .phuk-extra:nth-child(10) a').eq(0).click() // Pets
+      //cy.get('#bookingExtras .phuk-extra:nth-child(10) a').eq(0).click() // Pets
       cy.get('[name="Extras[TOURDOG].Quantity"]').select('1') // Lets take a dog
       //
-      cy.get('.text-right .btn-primary').first().click() // Continue
+      cy.get('.text-right .btn-primary').first().click({ force: true }) // Continue
       //
       cy.log(">> Your details")
       cy.get('[name="title"]').select(cy.config().testUser.title)

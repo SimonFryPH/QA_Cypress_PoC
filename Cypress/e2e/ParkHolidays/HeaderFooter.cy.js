@@ -23,11 +23,6 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('header li:nth-child(3) > button').click() // Menu
       cy.get('header li:nth-child(3) > button').should('include.text', 'Menu')
       cy.get('[href="/"]').should('include.text', 'Home')
-
-      cy.get('[__type="AccordionItemHeader"]').eq(0).should('include.text', 'Our Parks')
-      // '[data-trigger="onclose"] div div div .fs'
-      // park pages tests to be added
-
       cy.get('[__type="AccordionItemHeader"]').eq(13).should('include.text', 'Holidays & Short Breaks')
       //
       cy.get('[__type="AccordionItemHeader"]').eq(13).click() // Menu expand

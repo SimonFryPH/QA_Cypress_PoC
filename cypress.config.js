@@ -8,10 +8,11 @@ module.exports = defineConfig({
   //viewportHeight : 1080,
   defaultCommandTimeout: 20000,
   //screenSizes: [ [375, 667]],
+  //screenSizes: [ [375, 667],[768, 1024]],
   //screenSizes: [ [1920, 1080]],
   //screenSizes: [[1920, 1080],[768, 1024]],
-  screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
-  //screenSizes: [[768, 1024],[375, 667],[1920, 1080]],
+  //screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
+  screenSizes: [[375, 667],[768, 1024],[1920, 1080]],
   //screenSizes: [[375, 667],[1920, 1080]],
 
   e2e: {
@@ -75,7 +76,7 @@ module.exports = defineConfig({
       firstname: "firstnamePHUKTest",
       surname: "surnamePHUKTest",
       phoneno: "01234567890",
-      email: "phuktest@email.com",
+      email: "parkholidaystesting@gmail.com",
       postcode: "TN39 5ES",
       fulladdress: "Park Holidays UK Ltd, Glovers House Glovers End Bexhill-on-Sea"
     }
