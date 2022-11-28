@@ -27,16 +27,25 @@
 //import 'cypress-audit/commands';
 
 
-Cypress.Commands.add("ScanForBrokenLinks", () => {
+Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode=true,boolfollowRedirect=true) => {
     // document.querySelectorAll('a[href]').forEach((item) => console.log(item.href))
     cy.get('a[href]').each(link => {
         if (link.prop('href'))
             cy.request({
-                url: link.prop('href'), failOnStatusCode: true, followRedirect: true
+                url: link.prop('href'), failOnStatusCode: boolfailOnStatusCode, followRedirect: boolfollowRedirect
             })
         cy.log(link.prop('href'))
     })
 return undefined ;
 })
 
+
+Cypress.Commands.add('widthLessThan', (css, w) => {
+    cy.get(css).then($el => {
+        if ($el.outerWidth() < w) {
+            cy.log("widthLessThan " + w)
+            return true;
+        }
+    });
+})
 

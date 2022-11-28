@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 cy.config().screenSizes.forEach((size) => {
 
-  describe('Holiday Booking ' + size[0] + ', ' + size[1], async function () {
+  describe('Holiday Search' + size[0] + ', ' + size[1], async function () {
 
     beforeEach(() => {
       cy.viewport(size[0], size[1]) // Change screen size
@@ -18,7 +18,7 @@ cy.config().screenSizes.forEach((size) => {
       }
     })
 
-    it('Should search and book a Holiday',  function () {
+    it('Should search and book a Holiday (Holiday Journey A)',  function () {
       cy.get('.site-block .button--holiday').click()
       cy.get('.text--primary').should('include.text', 'Caravan Holidays & Short Breaks')
       //

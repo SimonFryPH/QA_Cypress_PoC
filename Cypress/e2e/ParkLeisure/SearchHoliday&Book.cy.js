@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 cy.config().screenSizes.forEach((size) => {
 
-    describe('NEW Holiday Booking ' + size[0] + ', ' + size[1], async function () {
+    describe('NEW Holiday Search ' + size[0] + ', ' + size[1], async function () {
 
         beforeEach(() => {
             cy.viewport(size[0], size[1]) // Change screen size

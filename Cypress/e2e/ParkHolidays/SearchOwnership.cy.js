@@ -26,7 +26,7 @@ function killChat() {
 
 cy.config().screenSizes.forEach((size) => {
 
-  describe('Ownership ' + size[0] + ', ' + size[1], async function () {
+  describe('Ownership search' + size[0] + ', ' + size[1], async function () {
     this.beforeAll(() => {
       killChat();
     });
@@ -39,7 +39,7 @@ cy.config().screenSizes.forEach((size) => {
       cookieClose()
     })
 
-    it('Should Search Holiday homes (ownership)', function () {
+    it('Should Search Holiday homes (Ownership Journey A)', function () {
 
       cy.get('#root').then(() => {
         let el = Cypress.$('#root')

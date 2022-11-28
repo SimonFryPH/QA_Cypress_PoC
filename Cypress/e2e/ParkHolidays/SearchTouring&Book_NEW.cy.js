@@ -18,7 +18,7 @@ function killChat() {
 
 cy.config().screenSizes.forEach((size) => {
 
-  describe('Holiday Touring booking ' + size[0] + ', ' + size[1], async function () {
+  describe('Touring & Camping search ' + size[0] + ', ' + size[1], async function () {
 
     this.beforeAll(() => {
       killChat();
@@ -35,7 +35,7 @@ cy.config().screenSizes.forEach((size) => {
     })
 
 
-    it('Should search & book a Touring & Camping holiday', function () {
+    it('Should be able to search & book (Journey A)', function () {
 
       cy.get('#root').then(() => {
         let el = Cypress.$('#root')
@@ -218,7 +218,7 @@ cy.config().screenSizes.forEach((size) => {
     })
 
 
-    it('HJBT-88 BUG: Touring Search - Changing party size is incorrectly filtering out results', function () {
+    it('Should not filter results when changing party size (re: HJBT-88 BUG)', function () {
 
       cy.log("All touring should allow up to 10 people. The 'locations available' search results should never change if the user only modifies the guest count (>0 and <=10) and searches again.")
       //cy.get('[role="region"] ._c795c3').eq(1).click() // Location

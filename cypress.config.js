@@ -4,6 +4,7 @@ module.exports = defineConfig({
 
   failOnStatusCode: false,
   chromeWebSecurity: false,
+  screenshotOnRunFailure: true,
   //viewportWidth : 1920,
   //viewportHeight : 1080,
   defaultCommandTimeout: 20000,

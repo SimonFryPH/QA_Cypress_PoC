@@ -18,7 +18,7 @@ function killChat() {
 
 cy.config().screenSizes.forEach((size) => {
 
-  describe('Holiday Touring booking ' + size[0] + ', ' + size[1], async function () {
+  describe('Holiday Touring & Camping search ' + size[0] + ', ' + size[1], async function () {
 
     this.beforeAll(() => {
       killChat();
