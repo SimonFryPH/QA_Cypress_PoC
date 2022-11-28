@@ -24,4 +24,19 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import 'cypress-audit/commands';
+//import 'cypress-audit/commands';
+
+
+Cypress.Commands.add("ScanForBrokenLinks", () => {
+    // document.querySelectorAll('a[href]').forEach((item) => console.log(item.href))
+    cy.get('a[href]').each(link => {
+        if (link.prop('href'))
+            cy.request({
+                url: link.prop('href'), failOnStatusCode: true, followRedirect: true
+            })
+        cy.log(link.prop('href'))
+    })
+return undefined ;
+})
+
+

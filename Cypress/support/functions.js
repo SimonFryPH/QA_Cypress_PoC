@@ -8,7 +8,12 @@ Cypress.Commands.add('widthLessThan', (css, w) => {
     });
 })
 
-
 Cypress.Commands.add("getByData", (selector) => {
     return cy.get(`[data-test=${selector}]`)
-  })
+})
+
+
+
+
+
+

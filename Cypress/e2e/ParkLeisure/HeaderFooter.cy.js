@@ -54,11 +54,11 @@ cy.config().screenSizes.forEach((size) => {
 
       //CONTACT US
       cy.get('div.l-footer__left > div:nth-child(3) > h4').should('include.text', 'Contact Us')
-      cy.get('footer address').should('include.text', 'Park Leisure 2000 Ltd')
-      cy.get('footer address').should('include.text', 'Tudor Court')
-      cy.get('footer address').should('include.text', 'York Business Park')
-      cy.get('footer address').should('include.text', 'Nether Poppleton')
-      cy.get('footer address').should('include.text', 'YO26 6RS')
+      cy.get('footer address').should('include.text', 'Park Holidays')
+      cy.get('footer address').should('include.text', 'Glovers House')
+      cy.get('footer address').should('include.text', 'Bexhill-On-Sea')
+      cy.get('footer address').should('include.text', 'East Sussex')
+      cy.get('footer address').should('include.text', 'TN39 5ES')
       //cy.get('.l-footer__col .e-icon-link').should('include.text', 'enquiries@parkleisure.co.uk')
       cy.get('.l-footer__col .e-icon-link').should('include.text', 'ownershipenquiries@parkleisure.co.uk')
       cy.get('.l-footer__all').should('include.text', 'Park Leisure 2000 Limited, Park Leisure 2000 (Cornwall) Limited and Park Leisure 2000 (Northumberland) Limited who are all registered in England (Reg. No’s 03352005,05262097 & 04268282) and are authorised and regulated by the Financial Conduct Authority (FCA) for consumer credit broking and general insurance & introduction activities under registration numbers 668081, 660778, 660777, 413870, 472809 & 414279')

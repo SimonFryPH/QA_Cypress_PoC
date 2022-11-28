@@ -18,6 +18,7 @@ cy.config().screenSizes.forEach((size) => {
       }
     })
 
+
     it('Should view a Park Menu', function () {
 
       cy.visit(cy.config().ph.baseUrl + '/caravan-holidays/half-board-catered-inclusive')
