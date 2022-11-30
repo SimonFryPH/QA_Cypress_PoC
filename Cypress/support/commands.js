@@ -27,7 +27,9 @@
 //import 'cypress-audit/commands';
 
 
-Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode=true,boolfollowRedirect=true) => {
+Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode = true, boolfollowRedirect = true) => {
+
+    cy.reload(true)
     // document.querySelectorAll('a[href]').forEach((item) => console.log(item.href))
     cy.get('a[href]').each(link => {
         if (link.prop('href'))
@@ -36,7 +38,28 @@ Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode=true,boolfollow
             })
         cy.log(link.prop('href'))
     })
-return undefined ;
+    return undefined;
+})
+
+
+
+Cypress.Commands.add('SiteMapRequests', (arrURLs) => {
+    //var ignoreList = ['https://www.parkleisureholidays.co.uk/accommodation/peartree-cottage', 'https://www.parkleisureholidays.co.uk/accommodation/cinder-cottage'];
+    for (var i = 0; i < arrURLs.length; i++) {
+        //if (!ignoreList.includes(arrURLs[i])) { // not working
+            cy.request({
+                url: arrURLs[i],
+                failOnStatusCode: false,  // allow good and bad response to pass into then
+                followRedirect: false
+            }).then(response => {
+                Cypress.log({
+                    name: arrURLs[i], message: response.status
+                })
+            })
+       // } else {
+       //     cy.log(i + ': Ignore:' + arrURLs[i])
+       // }
+    }
 })
 
 

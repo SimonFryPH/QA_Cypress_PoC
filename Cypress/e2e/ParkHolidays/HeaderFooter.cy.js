@@ -23,9 +23,9 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('header li:nth-child(3) > button').click() // Menu
       cy.get('header li:nth-child(3) > button').should('include.text', 'Menu')
       cy.get('[href="/"]').should('include.text', 'Home')
-      cy.get('[__type="AccordionItemHeader"]').eq(13).should('include.text', 'Holidays & Short Breaks')
+      cy.get('[__type="AccordionItemHeader"]').eq(0).should('include.text', 'Holidays & Short Breaks')
       //
-      cy.get('[__type="AccordionItemHeader"]').eq(13).click() // Menu expand
+      cy.get('[__type="AccordionItemHeader"]').eq(0).click() // Menu expand
       cy.get('[href="/caravan-holidays"]').should('include.text', 'Overview')
       cy.get('[href="/caravan-holidays/self-catering-accommodation-rent-rental-hire"]').should('include.text', 'Accommodation')
       cy.get('[href="/caravan-holidays/luxury-lodge-holiday-breaks"]').should('include.text', 'Luxury Lodge Holidays')
@@ -39,8 +39,8 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('[href="/caravan-holidays/special-offers"]').should('include.text', 'Special Offers')
       cy.get('[href="/caravan-holidays/phone-only-offers"]').should('include.text', 'Phone-only Offers')
       cy.get('[href="/caravan-holidays/next-year"]').should('include.text', '2023 Holidays and Short Breaks')
-      //cy.get('[href="/about-us/reviews"]').eq(0).should('include.text', 'Park Holidays UK Reviews')
-      //cy.get('[href="/caravan-holidays/staying-with-us/frequently-asked-questions"]').should('include.text', 'Frequently Asked Questions')
+      cy.get('[href="/about-us/reviews"]').eq(0).should('include.text', 'Park Holidays UK Reviews')
+      cy.get('[href="/caravan-holidays/staying-with-us/frequently-asked-questions"]').eq(0).should('include.text', 'Frequently Asked Questions')
       cy.get('[href="/caravan-holidays/dog-friendly"]').should('include.text', 'Dog Friendly Holidays')
       cy.get('[__type="AccordionItemHeader"]').eq(13).click() // Menu collapse
 
@@ -54,19 +54,16 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('[href="/touring-and-camping/touring-extras"]').should('include.text', 'Touring Extras')
       cy.get('[href="/touring-and-camping/food-drink"]').should('include.text', 'Food and Drink')
       cy.get('[href="/touring-and-camping/dog-friendly"]').should('include.text', 'Dog Friendly Touring Holidays')
-      cy.get('[href="/touring-and-camping/special-offers"]').should('include.text', 'Touring Special Offers')
+      cy.get('[href="/touring-and-camping/special-offers"]').should('include.text', 'Special Offers')
       cy.get('[href="/touring-and-camping/last-minute-deals"]').should('include.text', 'Last Minute Deals')
       cy.get('[href="/touring-and-camping/seasonal-tourers"]').should('include.text', 'Seasonal Pitches')
-      cy.get('[href="/touring-and-camping/special-offers"]').should('include.text', 'Touring Special Offers')
-      cy.get('[href="/touring-and-camping/last-minute-deals"]').should('include.text', 'Last Minute Deals')
-      cy.get('[href="/touring-and-camping/seasonal-tourers"]').should('include.text', 'Seasonal Pitches')
-      cy.get('[href="/touring-and-camping/staying-with-us/frequently-asked-questions"]').should('include.text', 'FAQs')
+      cy.get('[href="/touring-and-camping/staying-with-us/frequently-asked-questions"]').should('include.text', 'Frequently Asked Questions')
       cy.get('[__type="AccordionItemHeader"]').eq(14).click() // Menu collapse
 
 
-      cy.get('[__type="AccordionItemHeader"]').eq(15).should('include.text', 'Holiday Home Ownership')
+      cy.get('[__type="AccordionItemHeader"]').eq(24).should('include.text', 'Holiday Home Ownership')
       //
-      cy.get('[__type="AccordionItemHeader"]').eq(15).click() // Menu expand
+      cy.get('[__type="AccordionItemHeader"]').eq(24).click() // Menu expand
       cy.get('[href="/caravan-holiday-homes-for-sale"]').should('include.text', 'Overview')
       cy.get('[href="/caravan-holiday-homes-for-sale/ownership-guide/holiday-home-lifestyle"]').should('include.text', 'Ownership Guide')
       cy.get('[href="/caravan-holiday-homes-for-sale/static-caravans-for-sale"]').should('include.text', 'Static Caravans for Sale')
@@ -77,8 +74,8 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('[href="/caravan-holiday-homes-for-sale/guaranteed-letting"]').should('include.text', 'Guaranteed Letting')
       cy.get('[href="/caravan-holiday-homes-for-sale/showcase"]').should('include.text', 'Holiday Home Gallery')
       cy.get('[href="/caravan-holiday-homes-for-sale/request-brochure"]').should('include.text', 'Request Brochure')
-      cy.get('[href="/caravan-holiday-homes-for-sale/frequently-asked-questions"]').should('include.text', 'FAQs')
-      cy.get('[__type="AccordionItemHeader"]').eq(15).click() // Menu collapse
+      cy.get('[href="/caravan-holiday-homes-for-sale/frequently-asked-questions"]').should('include.text', 'Frequently Asked Questions')
+      cy.get('[__type="AccordionItemHeader"]').eq(24).click() // Menu collapse
 
 
       cy.get('[data-trigger="onclose"] button').first().click() // Menu close

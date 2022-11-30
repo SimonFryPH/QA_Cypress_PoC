@@ -1,3 +1,4 @@
+import '../../support/commands.js'
 import 'cypress-lighthouse';
 //import 'pa11y';
 
@@ -58,18 +59,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   
 
     it('Should get each url from the sitemap and return a 200',  () => {
-
-        for (var i = 0; i < urls.length; i++) {
-
-          cy.request('GET',urls[i])
-          .should((response) => {
-           expect(response.status).to.eq(200)
-           //expect(response).to.have.property('headers')
-           //expect(response).to.have.property('duration')
-          })
-        
-        }
-        cy.log("*** Finished ***")
+      cy.SiteMapRequests(urls);
     });
 
 
