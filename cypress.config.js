@@ -57,7 +57,13 @@ module.exports = defineConfig({
       ownershipParks: ["Alberta", "Ashbourne Heights", "Beauport", "Birchington Vale", "Bowland Fell", "Broadland Sands", "Burghead", "Carlton Meres", "Chichester Lakeside", "Coghurst Hall", "Dawlish Sands", "Dovercourt", "Felixstowe Beach", "Golden Sands", "Glendale","Harts", "Hedley Wood", "Hengar Manor", "Landscove", "Lossiemouth", "Marlie", "Martello Beach", "New Beach", "Oaklands", "Pakefield", "Pevensey Bay", "Polperro", "Riviera Bay", "Rye Harbour", "Sand le Mere", "Sandhills", "Seaview", "Seawick", "Silver Sands", "Solent Breezes", "St Osyth Beach", "Steeple Bay", "Suffolk Sands", "Tarka", "Trevella", "Turnberry", "Waterside", "West Mersea", "Winchelsea Sands", "Wood Farm"]
     },
 
+    
     pl: {
+      siteMapUrl: 'https://www.parkleisure.co.uk/sitemap.xml',
+      baseUrl: 'https://www.parkleisure.co.uk/',
+    },
+
+    plh: {
       siteMapUrl: 'https://www.parkleisureholidays.co.uk/sitemap.xml',
       baseUrl: 'https://www.parkleisureholidays.co.uk/',
       baseSearchUrl: 'https://search.parkleisureholidays.co.uk/holidays/search/',

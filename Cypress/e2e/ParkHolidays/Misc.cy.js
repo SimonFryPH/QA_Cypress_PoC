@@ -21,16 +21,15 @@ cy.config().screenSizes.forEach((size) => {
 
     it('Should view a Park Menu', function () {
 
-      cy.visit(cy.config().ph.baseUrl + '/caravan-holidays/half-board-catered-inclusive')
-      
+      cy.visit(cy.config().ph.baseUrl + 'caravan-holidays/half-board-catered-inclusive')
+
       cy.get('h5').eq(0).should('include.text', 'Park Menu')
-      cy.get('#parkGuideSelect option').eq(0).should('include.text', 'Please selectx')
+      cy.get('#parkGuideSelect option').eq(0).should('include.text', 'Please select')
       cy.get('#parkGuideSelect option').its('length').should('be.gt', 25) // shows we have some park menus to select
-
       cy.get('[name="parkmenuselect"]').select(Math.floor((Math.random() * 25) + 1)) // Pick random park menu
-      cy.get('#parkMenuForm > button').click() // Menu
-      //cy.url().should('include', '/assets') // new tab menu
 
+      //cy.get('#parkMenuForm > button').click() // Need to know how to close new tab afterwards
+      //cy.url().should('include', '/assets') // new tab menu
     })
 
   })
