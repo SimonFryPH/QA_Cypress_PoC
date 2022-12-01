@@ -108,3 +108,5 @@ Cypress_old/
 cypress/screenshots/
 
 Cypress\videos
+Cypress\integration
+Cypress\fixtures
