@@ -44,21 +44,17 @@ Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode = true, boolfol
 
 
 Cypress.Commands.add('SiteMapRequests', (arrURLs) => {
-    //var ignoreList = ['https://www.parkleisureholidays.co.uk/accommodation/peartree-cottage', 'https://www.parkleisureholidays.co.uk/accommodation/cinder-cottage'];
+
     for (var i = 0; i < arrURLs.length; i++) {
-        //if (!ignoreList.includes(arrURLs[i])) { // not working
             cy.request({
                 url: arrURLs[i],
-                failOnStatusCode: false,  // allow good and bad response to pass into then
+                failOnStatusCode: false, 
                 followRedirect: false
             }).then(response => {
-                Cypress.log({
+               cy.log({
                     name: arrURLs[i], message: response.status
                 })
             })
-       // } else {
-       //     cy.log(i + ': Ignore:' + arrURLs[i])
-       // }
     }
 })
 

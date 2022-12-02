@@ -1,0 +1,13 @@
+
+-- Run commands --
+
+cd C:\development\QA_Cypress_PoC
+npx cypress run --spec "cypress/e2e/ParkHolidays/ALL.cy.js"
+npx cypress run --spec "cypress/e2e/ParkHolidays/ALL.cy.js"
+npx cypress run --spec "cypress/e2e/ParkLeisureHolidays/ALL.cy.js"
+npx cypress run --spec "cypress/e2e/SunCommunitiesUK/Homepage.cy.js"
+
+
+npx cypress run --spec "cypress/e2e/ParkHolidays/my.parkholidays.cy.js"
+npx cypress run --spec "cypress/e2e/ParkHolidays/test.cy.js"
+

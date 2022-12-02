@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
 
+
   failOnStatusCode: false,
   chromeWebSecurity: false,
   screenshotOnRunFailure: true,
@@ -12,9 +13,25 @@ module.exports = defineConfig({
   //screenSizes: [ [375, 667],[768, 1024]],
   //screenSizes: [ [1920, 1080]],
   //screenSizes: [[1920, 1080],[768, 1024]],
-  //screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
-  screenSizes: [[375, 667],[768, 1024],[1920, 1080]],
+  screenSizes: [[1920, 1080],[768, 1024],[375, 667]],
+  //screenSizes: [[375, 667],[768, 1024],[1920, 1080]],
   //screenSizes: [[375, 667],[1920, 1080]],
+
+"reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/reports",
+    "charts": true,
+    "html": true,
+    "json": false,
+    "quiet": false,
+    "reportTitle": "E2E Test Results",
+    "embeddedScreenshots": true,
+    "inlineAssets": false,
+    "overwrite": false,
+    reportFilename: "[status]_[datetime]-[name]",
+    timestamp: "isoDate"
+  },
+  "video": false,
 
   e2e: {
     supportFile: false,
@@ -91,5 +108,6 @@ module.exports = defineConfig({
   }
 
 
+  
 
 })

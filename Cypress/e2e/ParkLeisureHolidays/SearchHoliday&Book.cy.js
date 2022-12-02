@@ -10,8 +10,8 @@ cy.config().screenSizes.forEach((size) => {
 
         beforeEach(() => {
             cy.viewport(size[0], size[1]) // Change screen size
-            cy.visit(Cypress.config().pl.baseUrl)
-            cy.url().should('contain', Cypress.config().pl.baseUrl)
+            cy.visit(Cypress.config().plh.baseUrl)
+            cy.url().should('contain', Cypress.config().plh.baseUrl)
             if (window.location.href.indexOf("parkleisureholidays.co.uk") > -1) {
                 cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
                 cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner

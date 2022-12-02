@@ -16,8 +16,14 @@
  * @type {Cypress.PluginConfig}
  */
 
+ module.exports = (on, config) => {
+  require('cypress-mochawesome-reporter/plugin')(on);
+};
+
+
 // cypress/plugins/index.js
 import { lighthouse, pa11y, prepareAudit } from "cypress-audit";
+import 'cypress-mochawesome-reporter/register';
 
 export default (on, config) => {
   on("before:browser:launch", (browser = {}, launchOptions) => {

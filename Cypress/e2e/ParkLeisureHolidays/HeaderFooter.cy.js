@@ -1,3 +1,5 @@
+import '../../support/functions.js'
+const { eq } = require('cypress/types/lodash');
 const dayjs = require('dayjs')
 
 Cypress.on('uncaught:exception', (err, runnable) => {
@@ -10,8 +12,8 @@ cy.config().screenSizes.forEach((size) => {
 
     beforeEach(() => {
       cy.viewport(size[0], size[1]) // Change screen size
-      cy.visit(cy.config().pl.baseUrl)
-      cy.url().should('contain', cy.config().pl.baseUrl)
+      cy.visit(cy.config().plh.baseUrl)
+      cy.url().should('contain', cy.config().plh.baseUrl)
       if (window.location.href.indexOf("parkleisureholidays.co.uk") > -1) {
         cy.get('#onetrust-button-group #onetrust-accept-btn-handler').click()
         cy.setCookie('OptanonAlertBoxClosed', dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) // Create cookie to disable cookie banner
@@ -20,22 +22,34 @@ cy.config().screenSizes.forEach((size) => {
 
     it('Should access Header menu items', function () {
 
-      cy.get('.b-nav-bar__list :nth-child(1) a').should('include.text', 'Request a brochure')
-      cy.get('.b-nav-bar__list :nth-child(2) a').should('include.text', 'FAQs')
-      cy.get('.b-nav-bar__list :nth-child(3) a').should('include.text', 'Make a Payment')
+      cy.get('#root').then(() => {
+        let el = Cypress.$('#root')
 
-      //expand "more menu" if width < 861
-      //cy.get('.b-nav-bar__list :nth-child(4) a').should('include.text', 'Own a holiday home')
-      //cy.get('.b-nav-bar__list :nth-child(5) a').should('include.text', 'Contact')
+        cy.get('.b-nav-bar__list a').eq(0).should('include.text', 'Request a brochure')
+        cy.get('.b-nav-bar__list a').eq(1).should('include.text', 'FAQs')
+        cy.get('.b-nav-bar__list a').eq(2).should('include.text', 'Make a Payment')
 
-      cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(1) > a').should('include.text', 'Our Locations')
-      cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(2) > a').should('include.text', 'The Park Leisure Experience')
+        if (el.outerWidth() < 861) {
+          cy.get('div.l-top-nav__nav > div:nth-child(2) button').should('include.text', 'More') // expand More
+        }
 
-      //expand "more menu" if width < 1240
-      cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(3) > a').should('include.text', 'Find your perfect break')
-      cy.get('div.l-top-nav__nav > div:nth-child(2) li:nth-child(4) > a').should('include.text', 'Offers')
-      //cy.get('div.l-top-nav__nav > div:nth-child(2) button').should('include.text', 'More') 
+        cy.get('.b-nav-bar__list a').eq(3).should('include.text', 'Own a holiday home')
+        cy.get('.b-nav-bar__list a').eq(4).should('include.text', 'Contact')
 
+        cy.get('div.l-top-nav__nav > div:nth-child(2) a').eq(0).should('include.text', 'Our Locations')
+        cy.get('div.l-top-nav__nav > div:nth-child(2) a').eq(1).should('include.text', 'The Park Leisure Experience')
+
+        //expand "more menu" if width < 1240
+        cy.get('div.l-top-nav__nav > div:nth-child(2) button').should('include.text', 'More')
+        cy.get('div.l-top-nav__nav > div:nth-child(2) button').click()
+
+
+        cy.get('div.l-top-nav__nav > div:nth-child(2) a').eq(2).should('include.text', 'Find your perfect break')
+        cy.get('div.l-top-nav__nav > div:nth-child(2) a').eq(3).should('include.text', 'Offers')
+        cy.get('div.l-top-nav__nav > div:nth-child(2) a').eq(4).should('include.text', 'Touring & Camping')
+
+
+      }) //#root
     })
 
     it('Should access Footer menu items', function () {

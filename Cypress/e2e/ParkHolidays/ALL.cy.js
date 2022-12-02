@@ -1,0 +1,15 @@
+import './HeaderFooter.cy.js'
+import './OurParks.cy.js'
+//import './SearchHoliday&Book_NEW.cy.js'
+import './SearchHoliday&Book.cy.js'
+import './SearchOwnership.cy.js'
+//import './SearchTouring&Book_NEW.cy.js'
+import './SearchTouring&Book.cy.js'
+
+import './my.parkholidays.cy.js'
+import './myholiday.parkholidays.cy.js'
+import './owners.parkholidays.cy.js'
+
+import './Misc.cy.js'
+import './LinkScanner.cy.js'
+//import './SiteMapRequests.cy.js'

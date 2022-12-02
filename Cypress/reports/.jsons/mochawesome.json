@@ -1,0 +1,187 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-02T12:01:59.445Z",
+    "end": "2022-12-02T12:02:20.871Z",
+    "duration": 21426,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "65397264-dde7-489b-a9f1-2661559c7e07",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ParkHolidays\\HeaderFooter.cy.js",
+      "file": "cypress\\e2e\\ParkHolidays\\HeaderFooter.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a82177fd-d532-4baa-8e40-d4f1cbe33486",
+          "title": "Header, Footer and menus 1920, 1080",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should access to the side menu bar",
+              "fullTitle": "Header, Footer and menus 1920, 1080 Should access to the side menu bar",
+              "timedOut": null,
+              "duration": 7284,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('header li:nth-child(3) > button').click(); // Menu\ncy.get('header li:nth-child(3) > button').should('include.text', 'Menu');\ncy.get('[href=\"/\"]').should('include.text', 'Home');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(0).should('include.text', 'Holidays & Short Breaks'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(0).click(); // Menu expand\ncy.get('[href=\"/caravan-holidays\"]').should('include.text', 'Overview');\ncy.get('[href=\"/caravan-holidays/self-catering-accommodation-rent-rental-hire\"]').should('include.text', 'Accommodation');\ncy.get('[href=\"/caravan-holidays/luxury-lodge-holiday-breaks\"]').should('include.text', 'Luxury Lodge Holidays');\ncy.get('[href=\"/caravan-holidays/sandhills-luxury-apartments\"]').should('include.text', 'Sandhills Luxury Apartments');\ncy.get('[href=\"/caravan-holidays/glamping\"]').should('include.text', 'Glamping');\ncy.get('[href=\"/caravan-holidays/november-december-breaks\"]').should('include.text', '2022 November & December Holidays');\ncy.get('[href=\"/caravan-holidays/holiday-extras\"]').should('include.text', 'Holiday Extras');\ncy.get('[href=\"/caravan-holidays/food-drink\"]').should('include.text', 'Food and Drink');\ncy.get('[href=\"/caravan-holidays/entertainment\"]').should('include.text', 'Entertainment & Live Shows');\ncy.get('[href=\"/caravan-holidays/local-attractions\"]').should('include.text', 'Attraction Discounts');\ncy.get('[href=\"/caravan-holidays/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/caravan-holidays/phone-only-offers\"]').should('include.text', 'Phone-only Offers');\ncy.get('[href=\"/caravan-holidays/next-year\"]').should('include.text', '2023 Holidays and Short Breaks');\ncy.get('[href=\"/about-us/reviews\"]').eq(0).should('include.text', 'Park Holidays UK Reviews');\ncy.get('[href=\"/caravan-holidays/staying-with-us/frequently-asked-questions\"]').eq(0).should('include.text', 'Frequently Asked Questions');\ncy.get('[href=\"/caravan-holidays/dog-friendly\"]').should('include.text', 'Dog Friendly Holidays');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(13).click(); // Menu collapse\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).should('include.text', 'Touring & Camping'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).click(); // Menu expand\ncy.get('[href=\"/touring-and-camping\"]').should('include.text', 'Overview');\ncy.get('[href=\"/touring-and-camping/our-campsites\"]').should('include.text', 'About Our Campsites');\ncy.get('[href=\"/touring-and-camping/pods\"]').should('include.text', 'Camping Pods');\ncy.get('[href=\"/touring-and-camping/touring-extras\"]').should('include.text', 'Touring Extras');\ncy.get('[href=\"/touring-and-camping/food-drink\"]').should('include.text', 'Food and Drink');\ncy.get('[href=\"/touring-and-camping/dog-friendly\"]').should('include.text', 'Dog Friendly Touring Holidays');\ncy.get('[href=\"/touring-and-camping/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/touring-and-camping/last-minute-deals\"]').should('include.text', 'Last Minute Deals');\ncy.get('[href=\"/touring-and-camping/seasonal-tourers\"]').should('include.text', 'Seasonal Pitches');\ncy.get('[href=\"/touring-and-camping/staying-with-us/frequently-asked-questions\"]').should('include.text', 'Frequently Asked Questions');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).click(); // Menu collapse\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).should('include.text', 'Holiday Home Ownership'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).click(); // Menu expand\ncy.get('[href=\"/caravan-holiday-homes-for-sale\"]').should('include.text', 'Overview');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/ownership-guide/holiday-home-lifestyle\"]').should('include.text', 'Ownership Guide');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/static-caravans-for-sale\"]').should('include.text', 'Static Caravans for Sale');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/lodges-for-sale\"]').should('include.text', 'Luxury Lodges for Sale');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/virtual-tours\"]').should('include.text', 'Virtual Tours');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/letting-income\"]').should('include.text', 'Extra Letting Income');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/guaranteed-letting\"]').should('include.text', 'Guaranteed Letting');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/showcase\"]').should('include.text', 'Holiday Home Gallery');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/request-brochure\"]').should('include.text', 'Request Brochure');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/frequently-asked-questions\"]').should('include.text', 'Frequently Asked Questions');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).click(); // Menu collapse\ncy.get('[data-trigger=\"onclose\"] button').first().click(); // Menu close",
+              "err": {},
+              "uuid": "b5f4f86d-c836-44bd-a31b-90e1a9642911",
+              "parentUUID": "a82177fd-d532-4baa-8e40-d4f1cbe33486",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b5f4f86d-c836-44bd-a31b-90e1a9642911"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7284,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "5677c892-171f-4a91-b456-9649e3f946bd",
+          "title": "Header, Footer and menus 768, 1024",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should access to the side menu bar",
+              "fullTitle": "Header, Footer and menus 768, 1024 Should access to the side menu bar",
+              "timedOut": null,
+              "duration": 6020,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('header li:nth-child(3) > button').click(); // Menu\ncy.get('header li:nth-child(3) > button').should('include.text', 'Menu');\ncy.get('[href=\"/\"]').should('include.text', 'Home');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(0).should('include.text', 'Holidays & Short Breaks'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(0).click(); // Menu expand\ncy.get('[href=\"/caravan-holidays\"]').should('include.text', 'Overview');\ncy.get('[href=\"/caravan-holidays/self-catering-accommodation-rent-rental-hire\"]').should('include.text', 'Accommodation');\ncy.get('[href=\"/caravan-holidays/luxury-lodge-holiday-breaks\"]').should('include.text', 'Luxury Lodge Holidays');\ncy.get('[href=\"/caravan-holidays/sandhills-luxury-apartments\"]').should('include.text', 'Sandhills Luxury Apartments');\ncy.get('[href=\"/caravan-holidays/glamping\"]').should('include.text', 'Glamping');\ncy.get('[href=\"/caravan-holidays/november-december-breaks\"]').should('include.text', '2022 November & December Holidays');\ncy.get('[href=\"/caravan-holidays/holiday-extras\"]').should('include.text', 'Holiday Extras');\ncy.get('[href=\"/caravan-holidays/food-drink\"]').should('include.text', 'Food and Drink');\ncy.get('[href=\"/caravan-holidays/entertainment\"]').should('include.text', 'Entertainment & Live Shows');\ncy.get('[href=\"/caravan-holidays/local-attractions\"]').should('include.text', 'Attraction Discounts');\ncy.get('[href=\"/caravan-holidays/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/caravan-holidays/phone-only-offers\"]').should('include.text', 'Phone-only Offers');\ncy.get('[href=\"/caravan-holidays/next-year\"]').should('include.text', '2023 Holidays and Short Breaks');\ncy.get('[href=\"/about-us/reviews\"]').eq(0).should('include.text', 'Park Holidays UK Reviews');\ncy.get('[href=\"/caravan-holidays/staying-with-us/frequently-asked-questions\"]').eq(0).should('include.text', 'Frequently Asked Questions');\ncy.get('[href=\"/caravan-holidays/dog-friendly\"]').should('include.text', 'Dog Friendly Holidays');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(13).click(); // Menu collapse\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).should('include.text', 'Touring & Camping'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).click(); // Menu expand\ncy.get('[href=\"/touring-and-camping\"]').should('include.text', 'Overview');\ncy.get('[href=\"/touring-and-camping/our-campsites\"]').should('include.text', 'About Our Campsites');\ncy.get('[href=\"/touring-and-camping/pods\"]').should('include.text', 'Camping Pods');\ncy.get('[href=\"/touring-and-camping/touring-extras\"]').should('include.text', 'Touring Extras');\ncy.get('[href=\"/touring-and-camping/food-drink\"]').should('include.text', 'Food and Drink');\ncy.get('[href=\"/touring-and-camping/dog-friendly\"]').should('include.text', 'Dog Friendly Touring Holidays');\ncy.get('[href=\"/touring-and-camping/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/touring-and-camping/last-minute-deals\"]').should('include.text', 'Last Minute Deals');\ncy.get('[href=\"/touring-and-camping/seasonal-tourers\"]').should('include.text', 'Seasonal Pitches');\ncy.get('[href=\"/touring-and-camping/staying-with-us/frequently-asked-questions\"]').should('include.text', 'Frequently Asked Questions');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).click(); // Menu collapse\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).should('include.text', 'Holiday Home Ownership'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).click(); // Menu expand\ncy.get('[href=\"/caravan-holiday-homes-for-sale\"]').should('include.text', 'Overview');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/ownership-guide/holiday-home-lifestyle\"]').should('include.text', 'Ownership Guide');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/static-caravans-for-sale\"]').should('include.text', 'Static Caravans for Sale');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/lodges-for-sale\"]').should('include.text', 'Luxury Lodges for Sale');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/virtual-tours\"]').should('include.text', 'Virtual Tours');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/letting-income\"]').should('include.text', 'Extra Letting Income');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/guaranteed-letting\"]').should('include.text', 'Guaranteed Letting');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/showcase\"]').should('include.text', 'Holiday Home Gallery');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/request-brochure\"]').should('include.text', 'Request Brochure');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/frequently-asked-questions\"]').should('include.text', 'Frequently Asked Questions');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).click(); // Menu collapse\ncy.get('[data-trigger=\"onclose\"] button').first().click(); // Menu close",
+              "err": {},
+              "uuid": "737c8f09-7d25-47f1-bbef-02e844b47dec",
+              "parentUUID": "5677c892-171f-4a91-b456-9649e3f946bd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "737c8f09-7d25-47f1-bbef-02e844b47dec"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6020,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8f3930b9-b239-4358-bc77-73da0196b5ea",
+          "title": "Header, Footer and menus 375, 667",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should access to the side menu bar",
+              "fullTitle": "Header, Footer and menus 375, 667 Should access to the side menu bar",
+              "timedOut": null,
+              "duration": 6143,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('header li:nth-child(3) > button').click(); // Menu\ncy.get('header li:nth-child(3) > button').should('include.text', 'Menu');\ncy.get('[href=\"/\"]').should('include.text', 'Home');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(0).should('include.text', 'Holidays & Short Breaks'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(0).click(); // Menu expand\ncy.get('[href=\"/caravan-holidays\"]').should('include.text', 'Overview');\ncy.get('[href=\"/caravan-holidays/self-catering-accommodation-rent-rental-hire\"]').should('include.text', 'Accommodation');\ncy.get('[href=\"/caravan-holidays/luxury-lodge-holiday-breaks\"]').should('include.text', 'Luxury Lodge Holidays');\ncy.get('[href=\"/caravan-holidays/sandhills-luxury-apartments\"]').should('include.text', 'Sandhills Luxury Apartments');\ncy.get('[href=\"/caravan-holidays/glamping\"]').should('include.text', 'Glamping');\ncy.get('[href=\"/caravan-holidays/november-december-breaks\"]').should('include.text', '2022 November & December Holidays');\ncy.get('[href=\"/caravan-holidays/holiday-extras\"]').should('include.text', 'Holiday Extras');\ncy.get('[href=\"/caravan-holidays/food-drink\"]').should('include.text', 'Food and Drink');\ncy.get('[href=\"/caravan-holidays/entertainment\"]').should('include.text', 'Entertainment & Live Shows');\ncy.get('[href=\"/caravan-holidays/local-attractions\"]').should('include.text', 'Attraction Discounts');\ncy.get('[href=\"/caravan-holidays/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/caravan-holidays/phone-only-offers\"]').should('include.text', 'Phone-only Offers');\ncy.get('[href=\"/caravan-holidays/next-year\"]').should('include.text', '2023 Holidays and Short Breaks');\ncy.get('[href=\"/about-us/reviews\"]').eq(0).should('include.text', 'Park Holidays UK Reviews');\ncy.get('[href=\"/caravan-holidays/staying-with-us/frequently-asked-questions\"]').eq(0).should('include.text', 'Frequently Asked Questions');\ncy.get('[href=\"/caravan-holidays/dog-friendly\"]').should('include.text', 'Dog Friendly Holidays');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(13).click(); // Menu collapse\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).should('include.text', 'Touring & Camping'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).click(); // Menu expand\ncy.get('[href=\"/touring-and-camping\"]').should('include.text', 'Overview');\ncy.get('[href=\"/touring-and-camping/our-campsites\"]').should('include.text', 'About Our Campsites');\ncy.get('[href=\"/touring-and-camping/pods\"]').should('include.text', 'Camping Pods');\ncy.get('[href=\"/touring-and-camping/touring-extras\"]').should('include.text', 'Touring Extras');\ncy.get('[href=\"/touring-and-camping/food-drink\"]').should('include.text', 'Food and Drink');\ncy.get('[href=\"/touring-and-camping/dog-friendly\"]').should('include.text', 'Dog Friendly Touring Holidays');\ncy.get('[href=\"/touring-and-camping/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/touring-and-camping/last-minute-deals\"]').should('include.text', 'Last Minute Deals');\ncy.get('[href=\"/touring-and-camping/seasonal-tourers\"]').should('include.text', 'Seasonal Pitches');\ncy.get('[href=\"/touring-and-camping/staying-with-us/frequently-asked-questions\"]').should('include.text', 'Frequently Asked Questions');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(14).click(); // Menu collapse\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).should('include.text', 'Holiday Home Ownership'); //\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).click(); // Menu expand\ncy.get('[href=\"/caravan-holiday-homes-for-sale\"]').should('include.text', 'Overview');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/ownership-guide/holiday-home-lifestyle\"]').should('include.text', 'Ownership Guide');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/static-caravans-for-sale\"]').should('include.text', 'Static Caravans for Sale');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/lodges-for-sale\"]').should('include.text', 'Luxury Lodges for Sale');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/virtual-tours\"]').should('include.text', 'Virtual Tours');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/letting-income\"]').should('include.text', 'Extra Letting Income');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/special-offers\"]').should('include.text', 'Special Offers');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/guaranteed-letting\"]').should('include.text', 'Guaranteed Letting');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/showcase\"]').should('include.text', 'Holiday Home Gallery');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/request-brochure\"]').should('include.text', 'Request Brochure');\ncy.get('[href=\"/caravan-holiday-homes-for-sale/frequently-asked-questions\"]').should('include.text', 'Frequently Asked Questions');\ncy.get('[__type=\"AccordionItemHeader\"]').eq(24).click(); // Menu collapse\ncy.get('[data-trigger=\"onclose\"] button').first().click(); // Menu close",
+              "err": {},
+              "uuid": "7e65cfe0-9e3c-4fa1-a52a-251f4e669c3d",
+              "parentUUID": "8f3930b9-b239-4358-bc77-73da0196b5ea",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7e65cfe0-9e3c-4fa1-a52a-251f4e669c3d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6143,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "charts": true,
+        "reportPageTitle": "My Test Suite",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

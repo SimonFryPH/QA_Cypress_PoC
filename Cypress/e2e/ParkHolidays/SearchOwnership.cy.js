@@ -26,7 +26,7 @@ function killChat() {
 
 cy.config().screenSizes.forEach((size) => {
 
-  describe('Ownership search' + size[0] + ', ' + size[1], async function () {
+  describe('Ownership search ' + size[0] + ', ' + size[1], async function () {
     this.beforeAll(() => {
       killChat();
     });
