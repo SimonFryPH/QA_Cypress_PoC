@@ -7,7 +7,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 });
 
 
-describe(Cypress.config().plh.siteMapUrl + ' Sitemap URL requests', async function () {
+describe(Cypress.config().plh.siteMapUrl + ' Sitemap URL tests ', async function () {
   let urls = [];
   before(() => {
     const parser = new DOMParser();
@@ -19,9 +19,9 @@ describe(Cypress.config().plh.siteMapUrl + ' Sitemap URL requests', async functi
     });
   });
 
-
-  it('Should get each url from the sitemap and return a 200',  () => {
-    cy.SiteMapRequests(urls);
+  it('Should all return a 200, and all images have alt attribute',  () => {
+    cy.SiteMapTests(urls);
   });
 
+  
 });

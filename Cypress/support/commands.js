@@ -43,20 +43,29 @@ Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode = true, boolfol
 
 
 
-Cypress.Commands.add('SiteMapRequests', (arrURLs) => {
+Cypress.Commands.add('SiteMapTests', (arrURLs) => {
 
-    for (var i = 0; i < arrURLs.length; i++) {
-            cy.request({
-                url: arrURLs[i],
-                failOnStatusCode: false, 
-                followRedirect: false
-            }).then(response => {
-               cy.log({
-                    name: arrURLs[i], message: response.status
-                })
+    cy.visit(arrURLs[0])
+    for (var i = 0; i < 10; i++) {
+    //for (var i = 0; i < arrURLs.length; i++) {
+        cy.request({
+            url: arrURLs[i],
+            failOnStatusCode: false,
+            followRedirect: true
+        }).then(response => {
+            //All 200
+            expect(response.status).to.equal(200) // true
+
+            // Check all images in page have alt tag
+            cy.get('img').each(($el) => {
+                cy.wrap($el)
+                    .should('have.attr', 'alt').should('not.be.empty')
+                    cy.log("Alt text is: '" + $el.attr('alt') + "'")
             })
+        })
     }
 })
+
 
 
 Cypress.Commands.add('widthLessThan', (css, w) => {
@@ -67,4 +76,9 @@ Cypress.Commands.add('widthLessThan', (css, w) => {
         }
     });
 })
+
+
+
+
+
 
