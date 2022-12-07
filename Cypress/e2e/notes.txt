@@ -6,6 +6,8 @@ npx cypress run --spec "cypress/e2e/ParkHolidays/ALL.cy.js"
 npx cypress run --spec "cypress/e2e/ParkHolidays/ALL.cy.js"
 
 npx cypress run --spec "cypress/e2e/ParkHolidays/SiteMapRequests.cy.js"
+npx cypress run --spec "cypress/e2e/ParkLeisure/SiteMapRequests.cy.js"
+npx cypress run --spec "cypress/e2e/ParkLeisureHolidays/SiteMapRequests.cy.js"
 
 
 npx cypress run --spec "cypress/e2e/ParkLeisureHolidays/ALL.cy.js"

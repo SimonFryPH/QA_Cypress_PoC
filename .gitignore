@@ -110,4 +110,4 @@ cypress/screenshots/
 Cypress\videos
 Cypress\integration
 Cypress\fixtures
-Cypress\reports
+Cypress/reports/
