@@ -7,7 +7,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 });
 
 
-  describe(Cypress.config().ph.siteMapUrl + ' Sitemap URL tests ', async function () {
+describe(Cypress.config().ph.siteMapUrl + ' Sitemap URL tests ', async function () {
   let urls = [];
 
   before(() => {
@@ -21,47 +21,29 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   });
 
 
-  it('Should all return a 200, and all images have alt attribute',  () => {
+  it('Google Lighthouse', () => {
+
+    /*
+    //Set up
+    npm install -g lighthouse
+    npm install -g lighthouse-ci
+    npm uninstall -g lighthouse
+    // Help https://medium.com/@giezendanenner/running-lighthouse-reports-on-the-command-line-1691a1b06a56
+    */
+
+    for (var i = 0; i < urls.length; i++) {
+      cy.exec('lighthouse ' + urls[i] + ' --output json --output html --output csv --chrome-flags=”--headless” --quiet --view')
+    }
+
+  });
+
+
+  xit('Should all return a 200, and all images have alt attribute', () => {
     cy.SiteMapTests(urls);
   });
 
-  //it('Lighthouse POC test', async () => {
-
-    //for (var i = 0; i < urls.length; i++) {
-
-    //cy.request('GET',urls[i])
-    //cy.visit(urls[1])
-    //cy.lighthouse();
-    //.should((response) => {
-    // expect(response.status).to.eq(200)
-    //expect(response).to.have.property('headers')
-    //expect(response).to.have.property('duration')
-    //})
-
-    /*
-    const customThresholds = {
-      performance: 50,
-      accessibility: 50,
-      seo: 70,
-      'first-contentful-paint': 2000,
-      'largest-contentful-paint': 3000,
-      'cumulative-layout-shift': 0.1,
-      'total-blocking-time': 500,
-    };
- 
-    const desktopConfig = {
-      formFactor: 'desktop',
-      screenEmulation: { disabled: true },
-    };
- 
-    cy.lighthouse(customThresholds, desktopConfig);
-    */
-    //}
-  //});
-
-
- // it('Should ImagesContainAltText', () => {
- //   cy.PageImagesShouldContainAltText(urls);
- // });
+  xit('Should ImagesContainAltText', () => {
+    cy.PageImagesShouldContainAltText(urls);
+  });
 
 });

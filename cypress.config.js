@@ -105,9 +105,10 @@ module.exports = defineConfig({
       fulladdress: "Park Holidays UK Ltd, Glovers House Glovers End Bexhill-on-Sea"
     }
 
-  }
+  },
 
-
-  
+    lighthouse: {
+      xxx: ''
+    }
 
 })

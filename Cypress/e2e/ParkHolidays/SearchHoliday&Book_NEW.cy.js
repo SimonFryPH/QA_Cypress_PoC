@@ -110,13 +110,13 @@ cy.config().screenSizes.forEach((size) => {
 
                 //Arival Date
                 cy.wait(1000)
-                cy.get('._3hmsj select').eq(0).select(3) // Month
+                cy.get('[name="checkin_month_year"]').eq(0).select(3) // Month
                 cy.wait(1000)
-                cy.get('._3hmsj select').eq(1).select(2) // How long
+                cy.get('[name="nights"]').eq(0).select(2) // How long
                 cy.wait(1000)
-                cy.get('._3hmsj select').eq(2).select(2) // Arrival date
+                cy.get('[name="checkin"]').eq(0).select(1) // Arrival date
                 cy.wait(1000)
-
+                
 
                 //Guests
                 if (el.outerWidth() < 1016) {
