@@ -19,8 +19,9 @@ describe(Cypress.config().pl.siteMapUrl + ' Sitemap URL requests ', async functi
     });
   });
 
-  it('Should all return a 200, and all images have alt attribute',  () => {
-    cy.SiteMapTests(urls);
+
+  it('Various SiteMap Page tests',  function () {
+    cy.SiteMapPageTests(urls,true,true,true);
   });
 
 });

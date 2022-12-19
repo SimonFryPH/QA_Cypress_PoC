@@ -21,7 +21,13 @@ describe(Cypress.config().ph.siteMapUrl + ' Sitemap URL tests ', async function 
   });
 
 
-  it('Google Lighthouse', () => {
+  
+  it('Various SiteMap Page tests',  function () {
+    cy.SiteMapPageTests(urls,true,false,true);
+  });
+
+
+  xit('Google Lighthouse', () => {
 
     /*
     //Set up
@@ -38,12 +44,7 @@ describe(Cypress.config().ph.siteMapUrl + ' Sitemap URL tests ', async function 
   });
 
 
-  xit('Should all return a 200, and all images have alt attribute', () => {
-    cy.SiteMapTests(urls);
-  });
 
-  xit('Should ImagesContainAltText', () => {
-    cy.PageImagesShouldContainAltText(urls);
-  });
+
 
 });

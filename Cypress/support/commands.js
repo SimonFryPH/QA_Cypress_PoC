@@ -27,41 +27,47 @@
 //import 'cypress-audit/commands';
 
 
-Cypress.Commands.add("ScanForBrokenLinks", (boolfailOnStatusCode = true, boolfollowRedirect = true) => {
-
-    cy.reload(true)
-    // document.querySelectorAll('a[href]').forEach((item) => console.log(item.href))
-    cy.get('a[href]').each(link => {
-        if (link.prop('href'))
-            cy.request({
-                url: link.prop('href'), failOnStatusCode: boolfailOnStatusCode, followRedirect: boolfollowRedirect
-            })
-        cy.log(link.prop('href'))
-    })
-    return undefined;
-})
-
-
-
-Cypress.Commands.add('SiteMapTests', (arrURLs) => {
+Cypress.Commands.add('SiteMapPageTests', (arrURLs, boolPageResponseTests, boolHrefTests, boolImgAltTagTests) => {
 
     cy.visit(arrURLs[0])
-    for (var i = 0; i < 10; i++) {
-    //for (var i = 0; i < arrURLs.length; i++) {
+    //for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < arrURLs.length; i++) {
+        cy.log(">> TESTS FOR URL: " + arrURLs[i])
         cy.request({
             url: arrURLs[i],
             failOnStatusCode: false,
             followRedirect: true
         }).then(response => {
-            //All 200
-            expect(response.status).to.equal(200) // true
 
-            // Check all images in page have alt tag
-            cy.get('img').each(($el) => {
-                cy.wrap($el)
-                    .should('have.attr', 'alt').should('not.be.empty')
-                    cy.log("Alt text is: '" + $el.attr('alt') + "'")
-            })
+
+            if (boolPageResponseTests) {
+                cy.log("Page response status code test.")
+                expect(response.status).to.equal(200) // true
+            }
+
+
+            if (boolHrefTests) {
+                cy.log("All hrefs on page response test.")
+                cy.get('a[href]').each(link => {
+                    if (link.prop('href'))
+                        cy.request({
+                            url: link.prop('href'), failOnStatusCode: false, followRedirect: true
+                        }).then(response => {
+                            expect(response.status).to.equal(200) // true
+                        })
+                })
+            }
+
+
+            if (boolImgAltTagTests) {
+                cy.log("All Images on page Alt Tag test.")
+                cy.get('img').each(($el) => {
+                    cy.wrap($el)
+                        .should('have.attr', 'alt').should('not.be.empty')
+                })
+            }
+
+
         })
     }
 })
@@ -76,7 +82,6 @@ Cypress.Commands.add('widthLessThan', (css, w) => {
         }
     });
 })
-
 
 
 

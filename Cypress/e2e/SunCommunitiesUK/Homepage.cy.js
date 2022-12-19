@@ -8,6 +8,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 cy.config().screenSizes.forEach((size) => {
 
   describe('Sun Communities UK Website ' + size[0] + ', ' + size[1], async function () {
+    
 
     beforeEach(() => {
       cy.viewport(size[0], size[1]) // Change screen size
@@ -39,7 +40,6 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('[data-testid="brand-logo-text-container-right"] a').eq(0).should('have.attr', 'url').and('include', "https://www.parkleisure.co.uk")
     })
 
-
     it('Should have an Our Responsibilities download section', function () {
       cy.get('h2').eq(2).should('include.text', 'Our Responsibilities')
       cy.get('a').eq(3).should('have.attr', 'href').and('include', "https://eu-assets.contentstack.com/v3/assets/blt56c8850fd125d23e/blt19237c0c38637a27/634fbe26a367ef0ff728754a/es_policy_2021.pdf")
@@ -53,7 +53,7 @@ cy.config().screenSizes.forEach((size) => {
       cy.get('footer').should('include.text', 'Sun Communities')
 
       cy.get('footer a').should('include.text', 'Privacy policy')
-      cy.get('footer a').eq(0).should('have.attr', 'href').and('include', "/privacy-policy") 
+      cy.get('footer a').eq(0).should('have.attr', 'href').and('include', "/privacy-policy")
 
       cy.get('footer a').should('include.text', 'Cookie policy')
       cy.get('footer a').eq(1).should('have.attr', 'href').and('include', "/cookie-policy")
@@ -70,9 +70,10 @@ cy.config().screenSizes.forEach((size) => {
       cy.url().should('contain', '/cookie-policy')
     })
 
-    it('Should scan for broken links ' + cy.config().scuk.baseUrl, function () {
-      cy.ScanForBrokenLinks();
-    })
+    it('Various Page tests',  function () {
+      let urls = [cy.config().scuk.baseUrl, cy.config().scuk.baseUrl + 'privacy-policy', cy.config().scuk.baseUrl + 'cookie-policy'];
+      cy.SiteMapPageTests(urls, true, true, true);
+    });
 
   })
 

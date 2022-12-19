@@ -1,4 +1,4 @@
 import './LinkScanner.cy.js'
-import './SiteMapRequests.cy.js'
+import './SiteMapAllPageTests.cy.js'
 
 

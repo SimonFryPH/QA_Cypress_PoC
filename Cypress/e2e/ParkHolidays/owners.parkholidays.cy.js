@@ -16,6 +16,8 @@ cy.config().screenSizes.forEach((size) => {
 
         it('Should display login page', function () {
 
+            cy.get('.mat-dialog-container:visible').should('have.css', 'width', '355px')
+
             cy.get('#root').find('img').should('have.attr', 'src').should('include', 'ownersarea-logo-small-ph.svg')
             cy.get('#email_label span').should('include.text', 'Email Address')
             cy.get('#password_label span').should('include.text', 'Password')
